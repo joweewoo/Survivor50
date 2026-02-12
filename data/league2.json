@@ -1,0 +1,21 @@
+{
+  "leagueName": "LaMorte Family League",
+  "teams": [
+    {
+      "teamName": "Blindside Bandits",
+      "players": [
+        { "name": "Player A", "score": 12 },
+        { "name": "Player B", "score": 7 },
+        { "name": "Player C", "score": 15 }
+      ]
+    },
+    {
+      "teamName": "Hidden Immunity Idols",
+      "players": [
+        { "name": "Player D", "score": 20 },
+        { "name": "Player E", "score": 9 },
+        { "name": "Player F", "score": 5 }
+      ]
+    }
+  ]
+}
