@@ -1,11 +1,23 @@
-// Get league from URL
 const params = new URLSearchParams(window.location.search);
 const leagueFile = params.get("league");
 
-if (leagueFile) {
-  fetch(`data/${leagueFile}.json`)
-    .then(response => response.json())
-    .then(data => renderLeague(data));
+if (!leagueFile) {
+  document.body.innerHTML = "<h2>No league specified.</h2>";
+} else {
+  fetch(`./data/${leagueFile}.json`)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("League file not found");
+      }
+      return response.json();
+    })
+    .then(data => renderLeague(data))
+    .catch(error => {
+      document.body.innerHTML = `
+        <h2>Error loading league.</h2>
+        <p>${error.message}</p>
+      `;
+    });
 }
 
 function renderLeague(data) {
