@@ -1,3 +1,5 @@
+console.log("Script is running");
+
 const params = new URLSearchParams(window.location.search);
 const leagueFile = params.get("league");
 
