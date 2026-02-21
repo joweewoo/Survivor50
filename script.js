@@ -1,19 +1,25 @@
 // ======================================================
-//  ROUTING — LOAD CORRECT LEAGUE FROM URL
+// ROUTING
 // ======================================================
 
 const params = new URLSearchParams(window.location.search);
 const leagueFile = params.get("league");
 
+// If a league is specified → load league
+// Otherwise → load contestants page
 if (leagueFile) {
   loadLeague(leagueFile);
+} else {
+  loadContestants();
 }
 
 // ======================================================
-//  LOAD LEAGUE + AUTO CALCULATE SCORES
+// LOAD LEAGUE PAGE (High School / Family / etc)
 // ======================================================
 
 async function loadLeague(fileName) {
+
+  console.log("Loading league:", fileName);
 
   const response = await fetch(`data/${fileName}.json`);
 
@@ -30,9 +36,8 @@ async function loadLeague(fileName) {
   if (!title || !container) return;
 
   title.innerText = league.leagueName;
-  container.innerHTML = ""; // Clear old content
+  container.innerHTML = "";
 
-  // Loop through teams
   for (let team of league.teams) {
 
     let teamTotal = 0;
@@ -40,14 +45,12 @@ async function loadLeague(fileName) {
     const teamDiv = document.createElement("div");
     teamDiv.className = "team-card";
 
-    // Team Name
     const teamHeader = document.createElement("h2");
     teamHeader.innerText = team.teamName;
     teamDiv.appendChild(teamHeader);
 
     const playerList = document.createElement("ul");
 
-    // Loop through players
     for (let player of team.players) {
 
       const score = await calculatePlayerScore(player.name);
@@ -67,7 +70,6 @@ async function loadLeague(fileName) {
 
     teamDiv.appendChild(playerList);
 
-    // Team Total
     const totalDiv = document.createElement("div");
     totalDiv.className = "team-total";
     totalDiv.innerText = `Team Total: ${teamTotal} pts`;
@@ -79,7 +81,43 @@ async function loadLeague(fileName) {
 }
 
 // ======================================================
-//  CALCULATE PLAYER SCORE FROM EPISODE MATRICES
+// LOAD CONTESTANTS PAGE
+// ======================================================
+
+async function loadContestants() {
+
+  console.log("Loading contestants page");
+
+  const container = document.getElementById("leagueContainer");
+
+  if (!container) return;
+
+  const response = await fetch("data/leaguecontestants.json");
+
+  if (!response.ok) {
+    console.error("Contestants file not found");
+    return;
+  }
+
+  const data = await response.json();
+
+  container.innerHTML = `<h2>${data.leagueName}</h2>`;
+
+  data.teams.forEach(team => {
+
+    const teamDiv = document.createElement("div");
+
+    const link = document.createElement("a");
+    link.href = `player.html?name=${team.teamName}`;
+    link.innerText = team.teamName;
+
+    teamDiv.appendChild(link);
+    container.appendChild(teamDiv);
+  });
+}
+
+// ======================================================
+// CALCULATE PLAYER SCORE FROM EPISODE MATRICES
 // ======================================================
 
 async function calculatePlayerScore(playerName) {
@@ -87,16 +125,14 @@ async function calculatePlayerScore(playerName) {
   const episodes = [
     "episode2.json",
     "episode3.json"
-    // Add new episode files here
+    // Add new episodes here
   ];
 
   let total = 0;
 
-  // Fetch ALL episodes
   for (let file of episodes) {
 
     const response = await fetch(`data/${file}`);
-
     if (!response.ok) continue;
 
     const data = await response.json();
