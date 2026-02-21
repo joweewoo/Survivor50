@@ -10,7 +10,7 @@ h1 {
   color: #f39c12;
 }
 
-.league-list a {
+.container a {
   display: block;
   background: #222;
   padding: 15px;
@@ -23,7 +23,7 @@ h1 {
   transition: 0.3s;
 }
 
-.league-list a:hover {
+.container a:hover {
   background: #f39c12;
   color: black;
 }
