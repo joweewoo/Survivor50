@@ -5,12 +5,10 @@
 const params = new URLSearchParams(window.location.search);
 const leagueFile = params.get("league");
 
-// If a league is specified → load league
-// Otherwise → load contestants page
-if (leagueFile) {
-  loadLeague(leagueFile);
-} else {
+if (!leagueFile) {
   loadContestants();
+} else {
+  loadLeague(leagueFile);
 }
 
 // ======================================================
