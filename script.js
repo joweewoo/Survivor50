@@ -86,26 +86,39 @@ async function loadLeague(fileName) {
 // ======================================================
 
 async function loadContestants() {
-container.innerHTML = "";
 
-const header = document.createElement("h1");
-header.className = "league-header";
-header.innerText = data.leagueName;
-container.appendChild(header);
+  const container = document.getElementById("leagueContainer");
+  if (!container) return;
 
-data.teams.forEach(team => {
+  const response = await fetch("data/leaguecontestants.json?v=" + Date.now());
+  if (!response.ok) {
+    console.error("Contestants file not found");
+    return;
+  }
 
-  const card = document.createElement("div");
-  card.className = "team-card";
+  const data = await response.json();
 
-  const link = document.createElement("a");
-  link.className = "player-link";
-  link.href = `player.html?name=${team.teamName}`;
-  link.innerText = team.teamName;
+  container.innerHTML = "";
 
-  card.appendChild(link);
-  container.appendChild(card);
-});
+  const header = document.createElement("h1");
+  header.className = "league-header";
+  header.innerText = data.leagueName;
+  container.appendChild(header);
+
+  data.teams.forEach(team => {
+
+    const card = document.createElement("div");
+    card.className = "team-card";
+
+    const link = document.createElement("a");
+    link.className = "player-link";
+    link.href = `player.html?name=${team.teamName}`;
+    link.innerText = team.teamName;
+
+    card.appendChild(link);
+    container.appendChild(card);
+
+  });
 }
 
 // ======================================================
