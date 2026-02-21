@@ -59,3 +59,26 @@ h1 {
   font-weight: bold;
   text-align: right;
 }
+.player-link {
+  display: inline-block;
+  padding: 8px 14px;
+  margin: 4px 0;
+
+  background-color: #1f3c88;   /* or match your landing page button color */
+  color: white;
+
+  text-decoration: none;
+  border-radius: 8px;
+
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.player-link:hover {
+  background-color: #2b55c7;
+  transform: scale(1.03);
+}
+
+.player-link:active {
+  transform: scale(0.98);
+}
