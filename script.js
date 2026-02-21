@@ -2,15 +2,18 @@
 // ROUTING
 // ======================================================
 
-const params = new URLSearchParams(window.location.search);
-const leagueFile = params.get("league");
+window.addEventListener("DOMContentLoaded", () => {
 
-if (!leagueFile) {
-  loadContestants();
-} else {
-  loadLeague(leagueFile);
-}
+  const params = new URLSearchParams(window.location.search);
+  const leagueFile = params.get("league");
 
+  if (!leagueFile) {
+    loadContestants();
+  } else {
+    loadLeague(leagueFile);
+  }
+
+});
 // ======================================================
 // LOAD LEAGUE PAGE (High School / Family / etc)
 // ======================================================
