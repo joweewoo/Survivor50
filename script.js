@@ -59,12 +59,12 @@ async function loadLeague(fileName) {
 
       const li = document.createElement("li");
 
-      li.innerHTML = `
-        <a href="player.html?name=${player.name}">
-          ${player.name}
-        </a>
-        <span class="score">${score} pts</span>
-      `;
+    li.innerHTML = `
+      <a class="player-link" href="player.html?name=${player.name}">
+      ${player.name}
+    </a>
+    <span class="score">${score} pts</span>
+  `;
 
       playerList.appendChild(li);
     }
