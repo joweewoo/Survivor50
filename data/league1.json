@@ -4,40 +4,40 @@
     {
       "teamName": "Cila",
       "players": [
-        { "name": "Christian", "score": 12 },
-        { "name": "Cirie", "score": 7 },
-        { "name": "Emily", "score": 15 },
-        { "name": "Jenna", "score": 12 },
-        { "name": "Joe", "score": 7 },
-        { "name": "Ozzy", "score": 15 },  
-        { "name": "Rick", "score": 12 },
-        { "name": "Savannah", "score": 7 }
+        { "name": "Christian"},
+        { "name": "Cirie" },
+        { "name": "Emily"},
+        { "name": "Jenna"},
+        { "name": "Joe"},
+        { "name": "Ozzy"},  
+        { "name": "Rick"},
+        { "name": "Savannah"}
       ]
     },
     {
       "teamName": "Kalo",
       "players": [
-        { "name": "Charlie", "score": 12 },
-        { "name": "Chrissy", "score": 7 },
-        { "name": "Coach", "score": 15 },
-        { "name": "Dee", "score": 12 },
-        { "name": "Jonathan", "score": 7 },
-        { "name": "Kamilla", "score": 15 },  
-        { "name": "Mike", "score": 12 },
-        { "name": "Tiffany", "score": 7 }
+        { "name": "Charlie" },
+        { "name": "Chrissy"},
+        { "name": "Coach" },
+        { "name": "Dee"},
+        { "name": "Jonathan"},
+        { "name": "Kamilla"},  
+        { "name": "Mike" },
+        { "name": "Tiffany" }
       ]
     },
      {
       "teamName": "Vatu",
       "players": [
-        { "name": "Angelina", "score": 12 },
-        { "name": "Aubry", "score": 7 },
-        { "name": "Colby", "score": 15 },
-        { "name": "Genevieve", "score": 12 },
-        { "name": "Kyle", "score": 7 },
-        { "name": "Q", "score": 15 },  
-        { "name": "Rizo", "score": 12 },
-        { "name": "Stephanie", "score": 7 }
+        { "name": "Angelina"},
+        { "name": "Aubry"},
+        { "name": "Colby"},
+        { "name": "Genevieve"},
+        { "name": "Kyle"},
+        { "name": "Q"},  
+        { "name": "Rizo"},
+        { "name": "Stephanie"}
       ]
     }
   ]
