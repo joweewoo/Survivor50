@@ -64,3 +64,23 @@ async function loadLeague() {
     container.appendChild(div);
   });
 }
+async function calculatePlayerScore(playerName) {
+
+  const episodes = ["episode2.json", "episode3.json"]; // add more later
+  let total = 0;
+
+  for (let file of episodes) {
+    const response = await fetch(`data/${file}`);
+    const data = await response.json();
+
+    const playerArray = data.matrix[playerName];
+
+    if (playerArray) {
+      playerArray.forEach(points => {
+        total += points;
+      });
+    }
+  }
+
+  return total;
+}
