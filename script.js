@@ -46,3 +46,21 @@ function renderLeague(data) {
     container.appendChild(teamDiv);
   });
 }
+async function loadLeague() {
+  const response = await fetch("data/leaguecontestants.json");
+  const data = await response.json();
+
+  const container = document.getElementById("leagueContainer");
+  container.innerHTML = `<h2>${data.leagueName}</h2>`;
+
+  data.teams.forEach(team => {
+    const div = document.createElement("div");
+
+    const link = document.createElement("a");
+    link.href = `player.html?name=${team.teamName}`;
+    link.innerText = team.teamName;
+
+    div.appendChild(link);
+    container.appendChild(div);
+  });
+}
