@@ -8,9 +8,17 @@ if (leagueFile) {
     .then(data => renderLeague(data));
 }
 
-async function loadLeague() {
+// Get league from URL
+const params = new URLSearchParams(window.location.search);
+const leagueFile = params.get("league");
 
-  const response = await fetch("data/league1.json");
+if (leagueFile) {
+  loadLeague(leagueFile);
+}
+
+async function loadLeague(fileName) {
+
+  const response = await fetch(`data/${fileName}.json`);
   const league = await response.json();
 
   const container = document.querySelector(".league-list");
@@ -43,7 +51,7 @@ async function loadLeague() {
     container.appendChild(teamCard);
   }
 }
-loadLeague();
+
 async function loadLeague() {
   const response = await fetch("data/leaguecontestants.json");
   const data = await response.json();
