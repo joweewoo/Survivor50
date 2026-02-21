@@ -1,11 +1,11 @@
 {
-  "episode": 1,
+  "episode": 2,
   "actions": ["Participated on 1st place immunity tribe", "Sat out on 1st place immunity tribe", "Participated on 2nd place immunity tribe", "Sat out on 2nd place immunity tribe","Crit role in immunity success","Crit role in immunity defeat","Participated on 1st place reward tribe","Participated on 2nd place reward tribe","Crit role in reward success","Crit role in reward defeat","Finding an idol","Played idol to prevent going home","Played idol when player received votes","Held idol during close votes","Played idol when player did not receive votes","Played idol on wrong target","Voted out with an idol","Safe from Shot in the Dark when necessary","Safe from the Shot in the Dark when unnecessary","Finding other advantage","Effectual use of other advantage","Ineffectual use of other advantage","Unable to vote at tribal council","Individual immunity","Individual immunity if in crit danger", "Individual reward","Voted for eliminated player/split vote target","Crit role in correct vote","Voted incorrectly","Voted out","Crit role in own elimination","Winning final immunity","Winning fire","Each jury vote","Winning"],
   "matrix": {
     "Christian": [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    "Cirie": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    "Emily": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    "Jenna": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    "Cirie": [0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    "Emily": [0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    "Jenna": [0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
     "Joe": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
     "Ozzy": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
     "Rick": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
