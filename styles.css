@@ -37,6 +37,11 @@ h1 {
   box-shadow: 0 0 10px rgba(243, 156, 18, 0.3);
 }
 
+.container {
+  max-width: 1000px;
+  margin: auto;
+}
+
 .team-card ul {
   list-style: none;
   padding: 0;
