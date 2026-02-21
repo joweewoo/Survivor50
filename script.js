@@ -1,114 +1,104 @@
-// Get league from URL
+// ======================================================
+//  ROUTING — LOAD CORRECT LEAGUE FROM URL
+// ======================================================
+
 const params = new URLSearchParams(window.location.search);
 const leagueFile = params.get("league");
 
 if (leagueFile) {
-  fetch(`data/${leagueFile}.json`)
-    .then(response => response.json())
-    .then(data => renderLeague(data));
+  loadLeague(leagueFile);
 }
 
-function renderLeague(data) { 
+// ======================================================
+//  LOAD LEAGUE + AUTO CALCULATE SCORES
+// ======================================================
 
-  document.getElementById("leagueTitle").innerText = data.leagueName; 
+async function loadLeague(fileName) {
 
-  
+  const response = await fetch(`data/${fileName}.json`);
 
-  const container = document.getElementById("teamsContainer"); 
+  if (!response.ok) {
+    console.error("League file not found:", fileName);
+    return;
+  }
 
-  
+  const league = await response.json();
 
-  data.teams.forEach(team => { 
+  const title = document.getElementById("leagueTitle");
+  const container = document.getElementById("teamsContainer");
 
-    let totalScore = 0; 
+  if (!title || !container) return;
 
-  
+  title.innerText = league.leagueName;
+  container.innerHTML = ""; // Clear old content
 
-    const teamDiv = document.createElement("div"); 
+  // Loop through teams
+  for (let team of league.teams) {
 
-    teamDiv.className = "team-card"; 
+    let teamTotal = 0;
 
-  
+    const teamDiv = document.createElement("div");
+    teamDiv.className = "team-card";
 
-    const teamTitle = document.createElement("h2"); 
+    // Team Name
+    const teamHeader = document.createElement("h2");
+    teamHeader.innerText = team.teamName;
+    teamDiv.appendChild(teamHeader);
 
-    teamTitle.innerText = team.teamName; 
+    const playerList = document.createElement("ul");
 
-    teamDiv.appendChild(teamTitle); 
+    // Loop through players
+    for (let player of team.players) {
 
-  
+      const score = await calculatePlayerScore(player.name);
+      teamTotal += score;
 
-    const playerList = document.createElement("ul"); 
+      const li = document.createElement("li");
 
-  
+      li.innerHTML = `
+        <a href="player.html?name=${player.name}">
+          ${player.name}
+        </a>
+        <span class="score">${score} pts</span>
+      `;
 
-    team.players.forEach(player => { 
+      playerList.appendChild(li);
+    }
 
-      totalScore += player.score; 
+    teamDiv.appendChild(playerList);
 
-  
+    // Team Total
+    const totalDiv = document.createElement("div");
+    totalDiv.className = "team-total";
+    totalDiv.innerText = `Team Total: ${teamTotal} pts`;
 
-      const li = document.createElement("li"); 
+    teamDiv.appendChild(totalDiv);
 
-      li.innerHTML = ` 
-
-        <span>${player.name}</span> 
-
-        <span class="score">${player.score} pts</span> 
-
-      `; 
-
-      playerList.appendChild(li); 
-
-    }); 
-
-  
-
-    teamDiv.appendChild(playerList); 
-
-  
-
-    const total = document.createElement("div"); 
-
-    total.className = "team-total"; 
-
-    total.innerText = `Total: ${totalScore} pts`; 
-
-  
-
-    teamDiv.appendChild(total); 
-
-    container.appendChild(teamDiv); 
-
-  }); 
-
-} 
-
-async function loadLeague() {
-  const response = await fetch("data/leaguecontestants.json");
-  const data = await response.json();
-
-  const container = document.getElementById("leagueContainer");
-  container.innerHTML = `<h2>${data.leagueName}</h2>`;
-
-  data.teams.forEach(team => {
-    const div = document.createElement("div");
-
-    const link = document.createElement("a");
-    link.href = `player.html?name=${team.teamName}`;
-    link.innerText = team.teamName;
-
-    div.appendChild(link);
-    container.appendChild(div);
-  });
+    container.appendChild(teamDiv);
+  }
 }
+
+// ======================================================
+//  CALCULATE PLAYER SCORE FROM EPISODE MATRICES
+// ======================================================
+
 async function calculatePlayerScore(playerName) {
 
-  const episodes = ["episode2.json", "episode3.json"]; // add more later
+  const episodes = [
+    "episode2.json",
+    "episode3.json"
+    // Add new episode files here
+  ];
+
   let total = 0;
 
+  // Fetch ALL episodes
   for (let file of episodes) {
+
     const response = await fetch(`data/${file}`);
+
+    if (!response.ok) continue;
+
     const data = await response.json();
 
     const playerArray = data.matrix[playerName];
