@@ -1,77 +1,29 @@
 {
   "leagueName": "Contestants",
   "teams": [
-    {
-      "teamName": <a href="player.html?name=Christian">Christian</a>
-    },
-    {
-      "teamName": <a href="player.html?name=Cirie">Cirie</a>,
-    },
-     {
-      "teamName": <a href="player.html?name=Emily">Emily</a>
-    },
-     {
-      "teamName": <a href="player.html?name=Jenna">Jenna</a>
-    },
-     {
-      "teamName": <a href="player.html?name=Joe">Joe</a>
-    },
-     {
-      "teamName": <a href="player.html?name=Ozzy">Ozzy</a>
-    },
-     {
-      "teamName": <a href="player.html?name=Rick">Rick</a>
-    },
-     {
-      "teamName": <a href="player.html?name=Savannah">Savannah</a>
-    },
-      {
-      "teamName": <a href="player.html?name=Charlie">Charlie</a>
-    },
-    {
-      "teamName": <a href="player.html?name=Chrissy">Chrissy</a>,
-    },
-     {
-      "teamName": <a href="player.html?name=Coach">Coach</a>
-    },
-     {
-      "teamName": <a href="player.html?name=Dee">Dee</a>
-    },
-     {
-      "teamName": <a href="player.html?name=Jonathan">Jonathan</a>
-    },
-     {
-      "teamName": <a href="player.html?name=Kamilla">Kamilla</a>
-    },
-     {
-      "teamName": <a href="player.html?name=Mike">Mike</a>
-    },
-     {
-      "teamName": <a href="player.html?name=Tiffany">Tiffany</a>
-    },
-      {
-      "teamName": <a href="player.html?name=Angelina">Angeline</a>
-    },
-    {
-      "teamName": <a href="player.html?name=Aubry">Aubry</a>,
-    },
-     {
-      "teamName": <a href="player.html?name=Colby">Colby</a>
-    },
-     {
-      "teamName": <a href="player.html?name=Genevieve">Genevieve</a>
-    },
-     {
-      "teamName": <a href="player.html?name=Kyle">Kyle</a>
-    },
-     {
-      "teamName": <a href="player.html?name=Q">Q</a>
-    },
-     {
-      "teamName": <a href="player.html?name=Rizo">Rizo</a>
-    },
-     {
-      "teamName": <a href="player.html?name=Stephanie">Stephanie</a>
-    }
+    { "teamName": "Christian" },
+    { "teamName": "Cirie" },
+    { "teamName": "Emily" },
+    { "teamName": "Jenna" },
+    { "teamName": "Joe" },
+    { "teamName": "Ozzy" },
+    { "teamName": "Rick" },
+    { "teamName": "Savannah" },
+    { "teamName": "Charlie" },
+    { "teamName": "Chrissy" },
+    { "teamName": "Coach" },
+    { "teamName": "Dee" },
+    { "teamName": "Jonathan" },
+    { "teamName": "Kamilla" },
+    { "teamName": "Mike" },
+    { "teamName": "Tiffany" },
+    { "teamName": "Angelina" },
+    { "teamName": "Aubry" },
+    { "teamName": "Colby" },
+    { "teamName": "Genevieve" },
+    { "teamName": "Kyle" },
+    { "teamName": "Q" },
+    { "teamName": "Rizo" },
+    { "teamName": "Stephanie" }
   ]
 }
