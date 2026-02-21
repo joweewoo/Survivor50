@@ -1,4 +1,4 @@
-const episodes = ["episode2.json"]; // add more later
+const episodes = ["episode2.json","episode3.json"]; // add more later
 
 const params = new URLSearchParams(window.location.search);
 const playerName = params.get("name");
