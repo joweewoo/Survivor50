@@ -8,49 +8,81 @@ if (leagueFile) {
     .then(data => renderLeague(data));
 }
 
-// Get league from URL
-const params = new URLSearchParams(window.location.search);
-const leagueFile = params.get("league");
+function renderLeague(data) { 
 
-if (leagueFile) {
-  loadLeague(leagueFile);
-}
+  document.getElementById("leagueTitle").innerText = data.leagueName; 
 
-async function loadLeague(fileName) {
+  
 
-  const response = await fetch(`data/${fileName}.json`);
-  const league = await response.json();
+  const container = document.getElementById("teamsContainer"); 
 
-  const container = document.querySelector(".league-list");
+  
 
-  container.innerHTML = `<h1>${league.leagueName}</h1>`;
+  data.teams.forEach(team => { 
 
-  for (let team of league.teams) {
+    let totalScore = 0; 
 
-    const teamCard = document.createElement("div");
-    teamCard.className = "team-card";
+  
 
-    teamCard.innerHTML = `<h2>${team.teamName}</h2>`;
+    const teamDiv = document.createElement("div"); 
 
-    for (let player of team.players) {
+    teamDiv.className = "team-card"; 
 
-      const score = await calculatePlayerScore(player.name);
+  
 
-      const playerDiv = document.createElement("div");
+    const teamTitle = document.createElement("h2"); 
 
-      playerDiv.innerHTML = `
-        <a href="player.html?name=${player.name}">
-          ${player.name}
-        </a>
-        <span class="score">${score}</span>
-      `;
+    teamTitle.innerText = team.teamName; 
 
-      teamCard.appendChild(playerDiv);
-    }
+    teamDiv.appendChild(teamTitle); 
 
-    container.appendChild(teamCard);
-  }
-}
+  
+
+    const playerList = document.createElement("ul"); 
+
+  
+
+    team.players.forEach(player => { 
+
+      totalScore += player.score; 
+
+  
+
+      const li = document.createElement("li"); 
+
+      li.innerHTML = ` 
+
+        <span>${player.name}</span> 
+
+        <span class="score">${player.score} pts</span> 
+
+      `; 
+
+      playerList.appendChild(li); 
+
+    }); 
+
+  
+
+    teamDiv.appendChild(playerList); 
+
+  
+
+    const total = document.createElement("div"); 
+
+    total.className = "team-total"; 
+
+    total.innerText = `Total: ${totalScore} pts`; 
+
+  
+
+    teamDiv.appendChild(total); 
+
+    container.appendChild(teamDiv); 
+
+  }); 
+
+} 
 
 async function loadLeague() {
   const response = await fetch("data/leaguecontestants.json");
