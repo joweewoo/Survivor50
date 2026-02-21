@@ -8,44 +8,42 @@ if (leagueFile) {
     .then(data => renderLeague(data));
 }
 
-function renderLeague(data) {
-  document.getElementById("leagueTitle").innerText = data.leagueName;
+async function loadLeague() {
 
-  const container = document.getElementById("teamsContainer");
+  const response = await fetch("data/league1.json");
+  const league = await response.json();
 
-  data.teams.forEach(team => {
-    let totalScore = 0;
+  const container = document.querySelector(".league-list");
 
-    const teamDiv = document.createElement("div");
-    teamDiv.className = "team-card";
+  container.innerHTML = `<h1>${league.leagueName}</h1>`;
 
-    const teamTitle = document.createElement("h2");
-    teamTitle.innerText = team.teamName;
-    teamDiv.appendChild(teamTitle);
+  for (let team of league.teams) {
 
-    const playerList = document.createElement("ul");
+    const teamCard = document.createElement("div");
+    teamCard.className = "team-card";
 
-    team.players.forEach(player => {
-      totalScore += player.score;
+    teamCard.innerHTML = `<h2>${team.teamName}</h2>`;
 
-      const li = document.createElement("li");
-      li.innerHTML = `
-        <span>${player.name}</span>
-        <span class="score">${player.score} pts</span>
+    for (let player of team.players) {
+
+      const score = await calculatePlayerScore(player.name);
+
+      const playerDiv = document.createElement("div");
+
+      playerDiv.innerHTML = `
+        <a href="player.html?name=${player.name}">
+          ${player.name}
+        </a>
+        <span class="score">${score}</span>
       `;
-      playerList.appendChild(li);
-    });
 
-    teamDiv.appendChild(playerList);
+      teamCard.appendChild(playerDiv);
+    }
 
-    const total = document.createElement("div");
-    total.className = "team-total";
-    total.innerText = `Total: ${totalScore} pts`;
-
-    teamDiv.appendChild(total);
-    container.appendChild(teamDiv);
-  });
+    container.appendChild(teamCard);
+  }
 }
+loadLeague();
 async function loadLeague() {
   const response = await fetch("data/leaguecontestants.json");
   const data = await response.json();
