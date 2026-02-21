@@ -50,7 +50,7 @@ async function loadLeague(fileName) {
   const scoreboardLink = document.createElement("a");
   scoreboardLink.id = "teamScoreboardBtn";
   scoreboardLink.href = `team-scoreboard.html?league=${fileName}`;
-  scoreboardLink.className = "league-button";
+  scoreboardLink.className = "player-link";
   scoreboardLink.innerText = "Team Scoreboard";
 
   // Insert AFTER title
