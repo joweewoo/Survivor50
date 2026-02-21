@@ -2,19 +2,42 @@
   "leagueName": "LaMorte Family League",
   "teams": [
     {
-      "teamName": "Blindside Bandits",
+      "teamName": "Cila",
       "players": [
-        { "name": "Player A", "score": 12 },
-        { "name": "Player B", "score": 7 },
-        { "name": "Player C", "score": 15 }
+        { "name": "Christian"},
+        { "name": "Cirie" },
+        { "name": "Emily"},
+        { "name": "Jenna"},
+        { "name": "Joe"},
+        { "name": "Ozzy"},  
+        { "name": "Rick"},
+        { "name": "Savannah"}
       ]
     },
     {
-      "teamName": "Hidden Immunity Idols",
+      "teamName": "Kalo",
       "players": [
-        { "name": "Player D", "score": 20 },
-        { "name": "Player E", "score": 9 },
-        { "name": "Player F", "score": 5 }
+        { "name": "Charlie" },
+        { "name": "Chrissy"},
+        { "name": "Coach" },
+        { "name": "Dee"},
+        { "name": "Jonathan"},
+        { "name": "Kamilla"},  
+        { "name": "Mike" },
+        { "name": "Tiffany" }
+      ]
+    },
+     {
+      "teamName": "Vatu",
+      "players": [
+        { "name": "Angelina"},
+        { "name": "Aubry"},
+        { "name": "Colby"},
+        { "name": "Genevieve"},
+        { "name": "Kyle"},
+        { "name": "Q"},  
+        { "name": "Rizo"},
+        { "name": "Stephanie"}
       ]
     }
   ]
