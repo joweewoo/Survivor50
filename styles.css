@@ -76,6 +76,7 @@ h1 {
 
 .player-link:hover {
   background-color: #f39c12;
+  color: black;
   transform: scale(1.03);
 }
 
