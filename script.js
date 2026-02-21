@@ -39,6 +39,27 @@ async function loadLeague(fileName) {
   title.innerText = league.leagueName;
   container.innerHTML = "";
 
+  // =========================================
+  // ADD TEAM SCOREBOARD LINK
+  // =========================================
+
+  // Remove existing button if reloaded
+  const existingButton = document.getElementById("teamScoreboardBtn");
+  if (existingButton) existingButton.remove();
+
+  const scoreboardLink = document.createElement("a");
+  scoreboardLink.id = "teamScoreboardBtn";
+  scoreboardLink.href = `team-scoreboard.html?league=${fileName}`;
+  scoreboardLink.className = "league-button";
+  scoreboardLink.innerText = "Team Scoreboard";
+
+  // Insert AFTER title
+  title.insertAdjacentElement("afterend", scoreboardLink);
+
+  // =========================================
+  // RENDER TEAMS
+  // =========================================
+
   for (let team of league.teams) {
 
     let teamTotal = 0;
@@ -59,12 +80,12 @@ async function loadLeague(fileName) {
 
       const li = document.createElement("li");
 
-    li.innerHTML = `
-      <a class="player-link" href="player.html?name=${player.name}">
-      ${player.name}
-    </a>
-    <span class="score">${score} pts</span>
-  `;
+      li.innerHTML = `
+        <a class="player-link" href="player.html?name=${player.name}">
+          ${player.name}
+        </a>
+        <span class="score">${score} pts</span>
+      `;
 
       playerList.appendChild(li);
     }
@@ -80,7 +101,6 @@ async function loadLeague(fileName) {
     container.appendChild(teamDiv);
   }
 }
-
 // ======================================================
 // LOAD CONTESTANTS PAGE
 // ======================================================
