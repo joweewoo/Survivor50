@@ -102,3 +102,19 @@ h1 {
   padding: 6px 0;
   font-weight: 500;
 }
+
+.scoreboard-player-link {
+  display: inline;
+  padding: 4px 8px;     /* Smaller padding so it doesn’t increase height */
+  background-color: #222;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.scoreboard-player-link:hover {
+  background-color: #f39c12;
+  color: black;
+}
