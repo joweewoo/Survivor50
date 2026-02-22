@@ -28,13 +28,11 @@ async function loadPlayerScoreboard() {
   const contestantRes = await fetch("data/leaguecontestants.json?v=" + Date.now());
   const contestantData = await contestantRes.json();
 
-  let eliminationMap = {};
+let eliminationMap = {};
 
-  contestantData.teams?.forEach(team => {
-    team.players?.forEach(player => {
-      eliminationMap[player.name] = player.eliminatedAfter ?? null;
-    });
-  });
+contestantData.teams?.forEach(team => {
+  eliminationMap[team.teamName] = team.eliminatedAfter ?? null;
+});
 
   // ----------------------------
   // Episode Files
@@ -156,13 +154,11 @@ async function loadTeamScoreboard() {
   const contestantRes = await fetch("data/leaguecontestants.json?v=" + Date.now());
   const contestantData = await contestantRes.json();
 
-  let eliminationMap = {};
+let eliminationMap = {};
 
-  contestantData.teams?.forEach(team => {
-    team.players?.forEach(player => {
-      eliminationMap[player.name] = player.eliminatedAfter ?? null;
-    });
-  });
+contestantData.teams?.forEach(team => {
+  eliminationMap[team.teamName] = team.eliminatedAfter ?? null;
+});
 
   // ----------------------------
   // Episode Files
