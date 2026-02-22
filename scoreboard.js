@@ -14,6 +14,50 @@ window.addEventListener("DOMContentLoaded", () => {
 
 
 // ======================================================
+// LOAD ALL EPISODES DYNAMICALLY
+// ======================================================
+
+async function loadAllEpisodes() {
+
+  const episodes = [];
+  let episodeNumber = 1;
+
+  while (true) {
+
+    try {
+      const response = await fetch(`data/episode${episodeNumber}.json?v=${Date.now()}`);
+      if (!response.ok) break;
+
+      const data = await response.json();
+      episodes.push(data);
+
+      episodeNumber++;
+
+    } catch (err) {
+      break;
+    }
+  }
+
+  return episodes;
+}
+
+
+// ======================================================
+// GET LEAGUE START EPISODE
+// ======================================================
+
+function getStartEpisode(leagueFile) {
+
+  const leagueRules = {
+    "league1": 1,
+    "league2": 2
+  };
+
+  return leagueRules[leagueFile] || 1;
+}
+
+
+// ======================================================
 // LOAD PLAYER SCOREBOARD
 // ======================================================
 
@@ -22,64 +66,48 @@ async function loadPlayerScoreboard() {
   const container = document.getElementById("scoreboardContainer");
   if (!container) return;
 
-  // ----------------------------
+  const params = new URLSearchParams(window.location.search);
+  const leagueFile = params.get("league");
+
+  const startEpisode = getStartEpisode(leagueFile);
+
   // Load elimination data
-  // ----------------------------
   const contestantRes = await fetch("data/leaguecontestants.json?v=" + Date.now());
   const contestantData = await contestantRes.json();
 
-let eliminationMap = {};
+  let eliminationMap = {};
 
-contestantData.teams?.forEach(team => {
-  eliminationMap[team.teamName] = team.eliminatedAfter ?? null;
-});
+  contestantData.teams?.forEach(team => {
+    eliminationMap[team.teamName] = team.eliminatedAfter ?? null;
+  });
 
-  // ----------------------------
-  // Episode Files
-  // ----------------------------
-  const episodes = [
-    "episode2.json",
-    "episode3.json"
-    // Add new episodes here
-  ];
+  const episodes = await loadAllEpisodes();
 
   let overallTotals = {};
 
-  // ----------------------------
-  // Loop Through Episodes
-  // ----------------------------
-  for (let file of episodes) {
+  for (let episode of episodes) {
 
-    const episodeNumber = parseInt(
-      file.replace("episode", "").replace(".json", "")
-    );
-
-    const response = await fetch(`data/${file}?v=${Date.now()}`);
-    if (!response.ok) continue;
-
-    const data = await response.json();
+    if (episode.episode < startEpisode) continue;
 
     const block = document.createElement("div");
     block.className = "scoreboard-block";
 
     const title = document.createElement("h2");
-    title.innerText = file.replace(".json", "").toUpperCase();
+    title.innerText = `EPISODE ${episode.episode}`;
     block.appendChild(title);
 
     let rankings = [];
 
-    for (let player in data.matrix) {
+    for (let player in episode.matrix) {
 
-      // ----------------------------
-      // ELIMINATION FILTER
-      // ----------------------------
       const eliminatedAfter = eliminationMap[player];
 
-      if (eliminatedAfter !== null && eliminatedAfter < episodeNumber) {
+      if (eliminatedAfter !== null &&
+          eliminatedAfter < episode.episode) {
         continue;
       }
 
-      const score = data.matrix[player].reduce((a, b) => a + b, 0);
+      const score = episode.matrix[player].reduce((a, b) => a + b, 0);
 
       rankings.push({ name: player, score });
 
@@ -90,18 +118,18 @@ contestantData.teams?.forEach(team => {
     rankings.sort((a, b) => b.score - a.score);
 
     rankings.forEach((p, index) => {
+
       const row = document.createElement("div");
       row.className = "score-row";
       row.innerText = `${index + 1}. ${p.name} - ${p.score}`;
+
       block.appendChild(row);
     });
 
     container.appendChild(block);
   }
 
-  // ----------------------------
-  // OVERALL RANKING
-  // ----------------------------
+  // ---- Overall Block ----
 
   const overallBlock = document.createElement("div");
   overallBlock.className = "scoreboard-block";
@@ -115,9 +143,11 @@ contestantData.teams?.forEach(team => {
     .sort((a, b) => b.score - a.score);
 
   overallArray.forEach((p, index) => {
+
     const row = document.createElement("div");
     row.className = "score-row";
     row.innerText = `${index + 1}. ${p.name} - ${p.score}`;
+
     overallBlock.appendChild(row);
   });
 
@@ -136,9 +166,8 @@ async function loadTeamScoreboard() {
 
   if (!leagueFile) return;
 
-  // ----------------------------
-  // Load League Data
-  // ----------------------------
+  const startEpisode = getStartEpisode(leagueFile);
+
   const leagueResponse = await fetch(`data/${leagueFile}.json?v=${Date.now()}`);
   const league = await leagueResponse.json();
 
@@ -148,47 +177,28 @@ async function loadTeamScoreboard() {
   const container = document.getElementById("teamScoreboardContainer");
   if (!container) return;
 
-  // ----------------------------
-  // Load Elimination Data
-  // ----------------------------
   const contestantRes = await fetch("data/leaguecontestants.json?v=" + Date.now());
   const contestantData = await contestantRes.json();
 
-let eliminationMap = {};
+  let eliminationMap = {};
 
-contestantData.teams?.forEach(team => {
-  eliminationMap[team.teamName] = team.eliminatedAfter ?? null;
-});
+  contestantData.teams?.forEach(team => {
+    eliminationMap[team.teamName] = team.eliminatedAfter ?? null;
+  });
 
-  // ----------------------------
-  // Episode Files
-  // ----------------------------
-  const episodes = [
-    "episode2.json",
-    "episode3.json"
-  ];
+  const episodes = await loadAllEpisodes();
 
   let overallTotals = {};
 
-  // ----------------------------
-  // Loop Episodes
-  // ----------------------------
-  for (let file of episodes) {
+  for (let episode of episodes) {
 
-    const episodeNumber = parseInt(
-      file.replace("episode", "").replace(".json", "")
-    );
-
-    const episodeResponse = await fetch(`data/${file}?v=${Date.now()}`);
-    if (!episodeResponse.ok) continue;
-
-    const episodeData = await episodeResponse.json();
+    if (episode.episode < startEpisode) continue;
 
     const block = document.createElement("div");
     block.className = "scoreboard-block";
 
     const title = document.createElement("h2");
-    title.innerText = file.replace(".json", "").toUpperCase();
+    title.innerText = `EPISODE ${episode.episode}`;
     block.appendChild(title);
 
     let rankings = [];
@@ -201,14 +211,12 @@ contestantData.teams?.forEach(team => {
 
         const eliminatedAfter = eliminationMap[player.name];
 
-        // ----------------------------
-        // ELIMINATION FILTER
-        // ----------------------------
-        if (eliminatedAfter !== null && eliminatedAfter < episodeNumber) {
+        if (eliminatedAfter !== null &&
+            eliminatedAfter < episode.episode) {
           continue;
         }
 
-        const playerScores = episodeData.matrix[player.name];
+        const playerScores = episode.matrix[player.name];
 
         if (playerScores) {
           teamScore += playerScores.reduce((a, b) => a + b, 0);
@@ -224,18 +232,18 @@ contestantData.teams?.forEach(team => {
     rankings.sort((a, b) => b.score - a.score);
 
     rankings.forEach((t, index) => {
+
       const row = document.createElement("div");
       row.className = "score-row";
       row.innerText = `${index + 1}. ${t.name} - ${t.score}`;
+
       block.appendChild(row);
     });
 
     container.appendChild(block);
   }
 
-  // ----------------------------
-  // OVERALL TEAM RANKING
-  // ----------------------------
+  // ---- Overall Team Block ----
 
   const overallBlock = document.createElement("div");
   overallBlock.className = "scoreboard-block";
@@ -249,9 +257,11 @@ contestantData.teams?.forEach(team => {
     .sort((a, b) => b.score - a.score);
 
   overallArray.forEach((t, index) => {
+
     const row = document.createElement("div");
     row.className = "score-row";
     row.innerText = `${index + 1}. ${t.name} - ${t.score}`;
+
     overallBlock.appendChild(row);
   });
 
