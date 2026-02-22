@@ -2,7 +2,7 @@
   "leagueName": "Contestants",
   "teams": [
     { "teamName": "Christian", "eliminatedAfter": null  },
-    { "teamName": "Cirie", "eliminatedAfter": null  },
+    { "teamName": "Cirie", "eliminatedAfter": 2  },
     { "teamName": "Emily", "eliminatedAfter": null  },
     { "teamName": "Jenna", "eliminatedAfter": null  },
     { "teamName": "Joe", "eliminatedAfter": null  },
