@@ -5,7 +5,10 @@
 const params = new URLSearchParams(window.location.search);
 const playerName = params.get("name");
 const leagueFile = params.get("league");
-
+let startEpisode = 1;
+if (leagueFile === "league2.json") {
+  startEpisode = 2;
+}
 document.getElementById("playerName").innerText = playerName;
 
 
