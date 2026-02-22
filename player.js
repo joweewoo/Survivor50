@@ -1,37 +1,72 @@
-async function loadEpisodes(maxEpisodes) {
-  const episodes = [];
+// ==============================
+// LOAD EPISODES DYNAMICALLY
+// ==============================
 
-  for (let i = 1; i <= maxEpisodes; i++) {
+async function loadEpisodes() {
+  const episodes = [];
+  let episodeNumber = 1;
+
+  while (true) {
     try {
-      const response = await fetch(`episode${i}.json`);
+      const response = await fetch(`episode${episodeNumber}.json`);
+      if (!response.ok) break;
+
       const data = await response.json();
       episodes.push(data);
+      episodeNumber++;
+
     } catch (error) {
-      break; // stop when no more episodes exist
+      break;
     }
   }
 
   return episodes;
 }
 
+
+// ==============================
+// GET URL PARAMETERS
+// ==============================
+
 const params = new URLSearchParams(window.location.search);
 const playerName = params.get("name");
+const leagueFile = params.get("league"); // IMPORTANT
 
 document.getElementById("playerName").innerText = playerName;
 
-let totalScore = 0;
+
+// ==============================
+// LEAGUE RULES
+// ==============================
+
+const leagueRules = {
+  "league1.json": { startEpisode: 1 },
+  "league2.json": { startEpisode: 2 }
+};
+
+const startEpisode =
+  leagueRules[leagueFile]?.startEpisode || 1;
+
+
+// ==============================
+// MAIN LOGIC
+// ==============================
 
 async function loadData() {
-  const container = document.getElementById("weeklyBreakdown");
 
-  for (let file of episodes) {
-    const response = await fetch(`data/${file}`);
-    const data = await response.json();
+  const container = document.getElementById("weeklyBreakdown");
+  const episodes = await loadEpisodes();
+
+  let totalScore = 0;
+
+  for (let episode of episodes) {
+
+    const episodeNumber = episode.episode;
 
     const episodeDiv = document.createElement("div");
-    episodeDiv.innerHTML = `<h3>Episode ${data.episode}</h3>`;
+    episodeDiv.innerHTML = `<h3>Episode ${episodeNumber}</h3>`;
 
-    const playerArray = data.matrix[playerName];
+    const playerArray = episode.matrix[playerName];
 
     if (!playerArray) {
       episodeDiv.innerHTML += "<p>No data.</p>";
@@ -40,13 +75,14 @@ async function loadData() {
     }
 
     const ul = document.createElement("ul");
+    let episodeTotal = 0;
 
     playerArray.forEach((points, index) => {
       if (points !== 0) {
-        totalScore += points;
+        episodeTotal += points;
 
         const li = document.createElement("li");
-        li.innerText = `${data.actions[index]} (+${points})`;
+        li.innerText = `${episode.actions[index]} (+${points})`;
         ul.appendChild(li);
       }
     });
@@ -57,9 +93,20 @@ async function loadData() {
       episodeDiv.appendChild(ul);
     }
 
+    // Only count toward total if episode qualifies for this league
+    if (episodeNumber >= startEpisode) {
+      totalScore += episodeTotal;
+    }
+
     container.appendChild(episodeDiv);
   }
 
   document.getElementById("totalScore").innerText = totalScore;
 }
+
+
+// ==============================
+// RUN
+// ==============================
+
 loadData();
