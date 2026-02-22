@@ -14,8 +14,20 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
 });
+
+
 // ======================================================
-// LOAD LEAGUE PAGE (High School / Family / etc)
+// LEAGUE RULES
+// ======================================================
+
+const leagueRules = {
+  "league1": { startEpisode: 1 }, // High School Friends
+  "league2": { startEpisode: 2 }  // Family League
+};
+
+
+// ======================================================
+// LOAD LEAGUE PAGE
 // ======================================================
 
 async function loadLeague(fileName) {
@@ -23,7 +35,6 @@ async function loadLeague(fileName) {
   console.log("Loading league:", fileName);
 
   const response = await fetch(`data/${fileName}.json`);
-
   if (!response.ok) {
     console.error("League file not found:", fileName);
     return;
@@ -38,34 +49,35 @@ async function loadLeague(fileName) {
 
   title.innerText = league.leagueName;
   container.innerHTML = "";
-  // =========================================
-  // ADD Player SCOREBOARD LINK
-  // =========================================
 
-const playerLink = document.createElement("a");
-playerLink.href = `league-player-scoreboard.html?league=${fileName}`;
-playerLink.className = "league-button";
-playerLink.innerText = "Player Scoreboard";
+  // Determine startEpisode for this league
+  const startEpisode =
+    leagueRules[fileName]?.startEpisode || 1;
 
-document.body.insertBefore(playerLink, container);
 
-  
   // =========================================
-  // ADD TEAM SCOREBOARD LINK
+  // PLAYER SCOREBOARD LINK
   // =========================================
 
-  // Remove existing button if reloaded
-  const existingButton = document.getElementById("teamScoreboardBtn");
-  if (existingButton) existingButton.remove();
+  const playerLink = document.createElement("a");
+  playerLink.href = `league-player-scoreboard.html?league=${fileName}`;
+  playerLink.className = "league-button";
+  playerLink.innerText = "Player Scoreboard";
+
+  title.insertAdjacentElement("afterend", playerLink);
+
+
+  // =========================================
+  // TEAM SCOREBOARD LINK
+  // =========================================
 
   const scoreboardLink = document.createElement("a");
-  scoreboardLink.id = "teamScoreboardBtn";
   scoreboardLink.href = `team-scoreboard.html?league=${fileName}`;
-  scoreboardLink.className = "player-link";
+  scoreboardLink.className = "league-button";
   scoreboardLink.innerText = "Team Scoreboard";
 
-  // Insert AFTER title
-  title.insertAdjacentElement("afterend", scoreboardLink);
+  playerLink.insertAdjacentElement("afterend", scoreboardLink);
+
 
   // =========================================
   // RENDER TEAMS
@@ -86,13 +98,14 @@ document.body.insertBefore(playerLink, container);
 
     for (let player of team.players) {
 
-      const score = await calculatePlayerScore(player.name);
+      const score = await calculatePlayerScore(player.name, startEpisode);
       teamTotal += score;
 
       const li = document.createElement("li");
 
       li.innerHTML = `
-        <a class="player-link" href="player.html?name=${player.name}">
+        <a class="player-link"
+           href="player.html?name=${player.name}&league=${fileName}">
           ${player.name}
         </a>
         <span class="score">${score} pts</span>
@@ -108,10 +121,11 @@ document.body.insertBefore(playerLink, container);
     totalDiv.innerText = `Team Total: ${teamTotal} pts`;
 
     teamDiv.appendChild(totalDiv);
-
     container.appendChild(teamDiv);
   }
 }
+
+
 // ======================================================
 // LOAD CONTESTANTS PAGE
 // ======================================================
@@ -143,7 +157,7 @@ async function loadContestants() {
 
     const link = document.createElement("a");
     link.className = "player-link";
-    link.href = `player.html?name=${team.teamName}`;
+    link.href = `league.html?league=${team.file}`;
     link.innerText = team.teamName;
 
     card.appendChild(link);
@@ -152,28 +166,48 @@ async function loadContestants() {
   });
 }
 
+
 // ======================================================
-// CALCULATE PLAYER SCORE FROM EPISODE MATRICES
+// LOAD EPISODES DYNAMICALLY
 // ======================================================
 
-async function calculatePlayerScore(playerName) {
+async function loadEpisodes() {
 
-  const episodes = [
-    "episode2.json",
-    "episode3.json"
-    // Add new episodes here
-  ];
+  const episodes = [];
+  let episodeNumber = 1;
 
+  while (true) {
+    try {
+      const response = await fetch(`data/episode${episodeNumber}.json`);
+      if (!response.ok) break;
+
+      const data = await response.json();
+      episodes.push(data);
+      episodeNumber++;
+
+    } catch {
+      break;
+    }
+  }
+
+  return episodes;
+}
+
+
+// ======================================================
+// CALCULATE PLAYER SCORE
+// ======================================================
+
+async function calculatePlayerScore(playerName, startEpisode) {
+
+  const episodes = await loadEpisodes();
   let total = 0;
 
-  for (let file of episodes) {
+  for (let episode of episodes) {
 
-    const response = await fetch(`data/${file}`);
-    if (!response.ok) continue;
+    if (episode.episode < startEpisode) continue;
 
-    const data = await response.json();
-
-    const playerArray = data.matrix[playerName];
+    const playerArray = episode.matrix[playerName];
 
     if (playerArray) {
       playerArray.forEach(points => {
