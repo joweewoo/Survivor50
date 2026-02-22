@@ -26,7 +26,6 @@ async function loadAllEpisodes() {
   let episodeNumber = 1;
 
   while (true) {
-
     try {
       const response = await fetch(`data/episode${episodeNumber}.json?v=${Date.now()}`);
       if (!response.ok) break;
@@ -71,6 +70,7 @@ async function loadPlayerScoreboard() {
 
   const params = new URLSearchParams(window.location.search);
   const leagueFile = params.get("league");
+  if (!leagueFile) return;
 
   const startEpisode = getStartEpisode(leagueFile);
 
@@ -78,13 +78,11 @@ async function loadPlayerScoreboard() {
   const contestantData = await contestantRes.json();
 
   let eliminationMap = {};
-
   contestantData.teams?.forEach(team => {
     eliminationMap[team.teamName] = team.eliminatedAfter ?? null;
   });
 
   const episodes = await loadAllEpisodes();
-
   let overallTotals = {};
 
   for (let episode of episodes) {
@@ -94,9 +92,7 @@ async function loadPlayerScoreboard() {
     const block = document.createElement("div");
     block.className = "scoreboard-block";
 
-    const title = document.createElement("h2");
-    title.innerText = `EPISODE ${episode.episode}`;
-    block.appendChild(title);
+    block.innerHTML = `<h2>EPISODE ${episode.episode}</h2>`;
 
     let rankings = [];
 
@@ -121,35 +117,26 @@ async function loadPlayerScoreboard() {
 
     rankings.forEach((p, index) => {
 
-  const row = document.createElement("div");
-  row.className = "score-row";
+      block.innerHTML += `
+        <div class="score-row">
+          ${index + 1}. 
+          <a href="player.html?name=${encodeURIComponent(p.name)}&league=${leagueFile}" 
+             class="scoreboard-player-link">
+             ${p.name}
+          </a>
+           - ${p.score}
+        </div>
+      `;
+    });
 
-  const numberText = document.createTextNode(`${index + 1}. `);
-
-  const link = document.createElement("a");
-  link.href = `player.html?name=${encodeURIComponent(p.name)}&league=${leagueFile}`;
-  link.className = "scoreboard-player-link";
-  link.innerText = p.name;
-
-  const scoreText = document.createTextNode(` - ${p.score}`);
-
-  row.appendChild(numberText);
-  row.appendChild(link);
-  row.appendChild(scoreText);
-
-  block.appendChild(row);
-});
     container.appendChild(block);
   }
 
-  // ---- Overall Block ----
+  // ================= OVERALL BLOCK =================
 
   const overallBlock = document.createElement("div");
   overallBlock.className = "scoreboard-block";
-
-  const overallTitle = document.createElement("h2");
-  overallTitle.innerText = "OVERALL RANKING";
-  overallBlock.appendChild(overallTitle);
+  overallBlock.innerHTML = `<h2>OVERALL RANKING</h2>`;
 
   const overallArray = Object.entries(overallTotals)
     .map(([name, score]) => ({ name, score }))
@@ -157,19 +144,16 @@ async function loadPlayerScoreboard() {
 
   overallArray.forEach((p, index) => {
 
-    const row = document.createElement("div");
-    row.className = "score-row";
-
-    const link = document.createElement("a");
-    link.className = "scoreboard-player-link";
-    link.href = `player.html?name=${p.name}&league=${leagueFile}`;
-    link.innerText = p.name;
-
-    row.appendChild(document.createTextNode(`${index + 1}. `));
-    row.appendChild(link);
-    row.appendChild(document.createTextNode(` - ${p.score}`));
-
-    overallBlock.appendChild(row);
+    overallBlock.innerHTML += `
+      <div class="score-row">
+        ${index + 1}. 
+        <a href="player.html?name=${encodeURIComponent(p.name)}&league=${leagueFile}" 
+           class="scoreboard-player-link">
+           ${p.name}
+        </a>
+         - ${p.score}
+      </div>
+    `;
   });
 
   container.appendChild(overallBlock);
@@ -177,14 +161,13 @@ async function loadPlayerScoreboard() {
 
 
 // ======================================================
-// LOAD TEAM SCOREBOARD
+// LOAD TEAM SCOREBOARD (UNCHANGED)
 // ======================================================
 
 async function loadTeamScoreboard() {
 
   const params = new URLSearchParams(window.location.search);
   const leagueFile = params.get("league");
-
   if (!leagueFile) return;
 
   const startEpisode = getStartEpisode(leagueFile);
@@ -202,13 +185,11 @@ async function loadTeamScoreboard() {
   const contestantData = await contestantRes.json();
 
   let eliminationMap = {};
-
   contestantData.teams?.forEach(team => {
     eliminationMap[team.teamName] = team.eliminatedAfter ?? null;
   });
 
   const episodes = await loadAllEpisodes();
-
   let overallTotals = {};
 
   for (let episode of episodes) {
@@ -217,10 +198,7 @@ async function loadTeamScoreboard() {
 
     const block = document.createElement("div");
     block.className = "scoreboard-block";
-
-    const title = document.createElement("h2");
-    title.innerText = `EPISODE ${episode.episode}`;
-    block.appendChild(title);
+    block.innerHTML = `<h2>EPISODE ${episode.episode}</h2>`;
 
     let rankings = [];
 
@@ -238,7 +216,6 @@ async function loadTeamScoreboard() {
         }
 
         const playerScores = episode.matrix[player.name];
-
         if (playerScores) {
           teamScore += playerScores.reduce((a, b) => a + b, 0);
         }
@@ -253,39 +230,30 @@ async function loadTeamScoreboard() {
     rankings.sort((a, b) => b.score - a.score);
 
     rankings.forEach((t, index) => {
-
-      const row = document.createElement("div");
-      row.className = "score-row";
-
-      row.innerText = `${index + 1}. ${t.name} - ${t.score}`;
-
-      block.appendChild(row);
+      block.innerHTML += `
+        <div class="score-row">
+          ${index + 1}. ${t.name} - ${t.score}
+        </div>
+      `;
     });
 
     container.appendChild(block);
   }
 
-  // ---- Overall Team Block ----
-
   const overallBlock = document.createElement("div");
   overallBlock.className = "scoreboard-block";
-
-  const overallTitle = document.createElement("h2");
-  overallTitle.innerText = "OVERALL RANKING";
-  overallBlock.appendChild(overallTitle);
+  overallBlock.innerHTML = `<h2>OVERALL RANKING</h2>`;
 
   const overallArray = Object.entries(overallTotals)
     .map(([name, score]) => ({ name, score }))
     .sort((a, b) => b.score - a.score);
 
   overallArray.forEach((t, index) => {
-
-    const row = document.createElement("div");
-    row.className = "score-row";
-
-    row.innerText = `${index + 1}. ${t.name} - ${t.score}`;
-
-    overallBlock.appendChild(row);
+    overallBlock.innerHTML += `
+      <div class="score-row">
+        ${index + 1}. ${t.name} - ${t.score}
+      </div>
+    `;
   });
 
   container.appendChild(overallBlock);
