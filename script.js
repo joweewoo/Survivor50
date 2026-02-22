@@ -104,7 +104,7 @@ async function loadLeague(fileName) {
       const li = document.createElement("li");
 
       li.innerHTML = `
-        <a class="player-link"
+        <a class="scoreboard-player-link"
            href="player.html?name=${player.name}&league=${fileName}">
           ${player.name}
         </a>
@@ -156,7 +156,7 @@ async function loadContestants() {
     card.className = "team-card";
 
     const link = document.createElement("a");
-    link.className = "player-link";
+    link.className = "scoreboard-player-link";
     link.href = `league.html?league=${team.file}`;
     link.innerText = team.teamName;
 
