@@ -61,7 +61,7 @@ async function loadLeague(fileName) {
 
   const playerLink = document.createElement("a");
   playerLink.href = `league-player-scoreboard.html?league=${fileName}`;
-  playerLink.className = "league-button";
+  playerLink.className = "player-link";
   playerLink.innerText = "Player Scoreboard";
 
   title.insertAdjacentElement("afterend", playerLink);
@@ -73,7 +73,7 @@ async function loadLeague(fileName) {
 
   const scoreboardLink = document.createElement("a");
   scoreboardLink.href = `team-scoreboard.html?league=${fileName}`;
-  scoreboardLink.className = "league-button";
+  scoreboardLink.className = "player-link";
   scoreboardLink.innerText = "Team Scoreboard";
 
   playerLink.insertAdjacentElement("afterend", scoreboardLink);
