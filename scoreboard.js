@@ -71,7 +71,6 @@ async function loadPlayerScoreboard() {
 
   const startEpisode = getStartEpisode(leagueFile);
 
-  // Load elimination data
   const contestantRes = await fetch("data/leaguecontestants.json?v=" + Date.now());
   const contestantData = await contestantRes.json();
 
@@ -121,7 +120,15 @@ async function loadPlayerScoreboard() {
 
       const row = document.createElement("div");
       row.className = "score-row";
-      row.innerText = `${index + 1}. ${p.name} - ${p.score}`;
+
+      const link = document.createElement("a");
+      link.className = "scoreboard-player-link";
+      link.href = `player.html?name=${p.name}&league=${leagueFile}`;
+      link.innerText = p.name;
+
+      row.appendChild(document.createTextNode(`${index + 1}. `));
+      row.appendChild(link);
+      row.appendChild(document.createTextNode(` - ${p.score}`));
 
       block.appendChild(row);
     });
@@ -146,7 +153,15 @@ async function loadPlayerScoreboard() {
 
     const row = document.createElement("div");
     row.className = "score-row";
-    row.innerText = `${index + 1}. ${p.name} - ${p.score}`;
+
+    const link = document.createElement("a");
+    link.className = "scoreboard-player-link";
+    link.href = `player.html?name=${p.name}&league=${leagueFile}`;
+    link.innerText = p.name;
+
+    row.appendChild(document.createTextNode(`${index + 1}. `));
+    row.appendChild(link);
+    row.appendChild(document.createTextNode(` - ${p.score}`));
 
     overallBlock.appendChild(row);
   });
@@ -235,6 +250,7 @@ async function loadTeamScoreboard() {
 
       const row = document.createElement("div");
       row.className = "score-row";
+
       row.innerText = `${index + 1}. ${t.name} - ${t.score}`;
 
       block.appendChild(row);
@@ -260,6 +276,7 @@ async function loadTeamScoreboard() {
 
     const row = document.createElement("div");
     row.className = "score-row";
+
     row.innerText = `${index + 1}. ${t.name} - ${t.score}`;
 
     overallBlock.appendChild(row);
