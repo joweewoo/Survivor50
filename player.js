@@ -1,4 +1,18 @@
-const episodes = ["episode2.json","episode3.json"]; // add more later
+async function loadEpisodes(maxEpisodes) {
+  const episodes = [];
+
+  for (let i = 1; i <= maxEpisodes; i++) {
+    try {
+      const response = await fetch(`episode${i}.json`);
+      const data = await response.json();
+      episodes.push(data);
+    } catch (error) {
+      break; // stop when no more episodes exist
+    }
+  }
+
+  return episodes;
+}
 
 const params = new URLSearchParams(window.location.search);
 const playerName = params.get("name");
