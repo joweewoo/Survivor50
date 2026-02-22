@@ -5,10 +5,7 @@
 const params = new URLSearchParams(window.location.search);
 const playerName = params.get("name");
 const leagueFile = params.get("league");
-let startEpisode = 1;
-if (leagueFile === "league2.json") {
-  startEpisode = 2;
-}
+
 document.getElementById("playerName").innerText = playerName;
 
 
@@ -41,9 +38,10 @@ async function loadEpisodes() {
 
       const data = await response.json();
       episodes.push(data);
+
       episodeNumber++;
 
-    } catch {
+    } catch (err) {
       break;
     }
   }
@@ -66,6 +64,12 @@ async function loadData() {
   for (let episode of episodes) {
 
     const episodeNumber = episode.episode;
+
+    // ✅ Skip rendering episodes before startEpisode
+    if (episodeNumber < startEpisode) {
+      continue;
+    }
+
     const playerArray = episode.matrix[playerName];
 
     const episodeDiv = document.createElement("div");
@@ -97,10 +101,7 @@ async function loadData() {
       episodeDiv.appendChild(ul);
     }
 
-    // Only count toward total if allowed for league
-    if (episodeNumber >= startEpisode) {
-      totalScore += episodeTotal;
-    }
+    totalScore += episodeTotal;
 
     container.appendChild(episodeDiv);
   }
