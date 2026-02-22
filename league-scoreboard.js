@@ -2,6 +2,23 @@
 const urlParams = new URLSearchParams(window.location.search);
 const fileName = urlParams.get("league");
 
+let startEpisode;
+
+// High School Friends League counts from Episode 1
+if (fileName === "league1.json") {
+  startEpisode = 1;
+}
+
+// Family League counts from Episode 2 onward
+else if (fileName === "league2.json") {
+  startEpisode = 2;
+}
+
+// default fallback
+else {
+  startEpisode = 1;
+}
+
 // If no league provided, redirect
 if (!fileName) {
   window.location.href = "league.html";
