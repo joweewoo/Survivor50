@@ -4,9 +4,12 @@
 
 window.addEventListener("DOMContentLoaded", () => {
 
-  if (window.location.pathname.includes("team-scoreboard.html")) {
+  const path = window.location.pathname;
+
+  if (path.includes("team-scoreboard")) {
     loadTeamScoreboard();
-  } else {
+  }
+  else if (path.includes("league-player-scoreboard")) {
     loadPlayerScoreboard();
   }
 
