@@ -1,36 +1,10 @@
 // ==============================
-// LOAD EPISODES DYNAMICALLY
-// ==============================
-
-async function loadEpisodes() {
-  const episodes = [];
-  let episodeNumber = 1;
-
-  while (true) {
-    try {
-      const response = await fetch(`episode${episodeNumber}.json`);
-      if (!response.ok) break;
-
-      const data = await response.json();
-      episodes.push(data);
-      episodeNumber++;
-
-    } catch (error) {
-      break;
-    }
-  }
-
-  return episodes;
-}
-
-
-// ==============================
-// GET URL PARAMETERS
+// GET PARAMETERS
 // ==============================
 
 const params = new URLSearchParams(window.location.search);
 const playerName = params.get("name");
-const leagueFile = params.get("league"); // IMPORTANT
+const leagueFile = params.get("league");
 
 document.getElementById("playerName").innerText = playerName;
 
@@ -40,8 +14,8 @@ document.getElementById("playerName").innerText = playerName;
 // ==============================
 
 const leagueRules = {
-  "league1.json": { startEpisode: 1 },
-  "league2.json": { startEpisode: 2 }
+  "league1": { startEpisode: 1 },
+  "league2": { startEpisode: 2 }
 };
 
 const startEpisode =
@@ -49,7 +23,34 @@ const startEpisode =
 
 
 // ==============================
-// MAIN LOGIC
+// LOAD EPISODES
+// ==============================
+
+async function loadEpisodes() {
+
+  const episodes = [];
+  let episodeNumber = 1;
+
+  while (true) {
+    try {
+      const response = await fetch(`data/episode${episodeNumber}.json`);
+      if (!response.ok) break;
+
+      const data = await response.json();
+      episodes.push(data);
+      episodeNumber++;
+
+    } catch {
+      break;
+    }
+  }
+
+  return episodes;
+}
+
+
+// ==============================
+// MAIN
 // ==============================
 
 async function loadData() {
@@ -62,11 +63,10 @@ async function loadData() {
   for (let episode of episodes) {
 
     const episodeNumber = episode.episode;
+    const playerArray = episode.matrix[playerName];
 
     const episodeDiv = document.createElement("div");
     episodeDiv.innerHTML = `<h3>Episode ${episodeNumber}</h3>`;
-
-    const playerArray = episode.matrix[playerName];
 
     if (!playerArray) {
       episodeDiv.innerHTML += "<p>No data.</p>";
@@ -79,6 +79,7 @@ async function loadData() {
 
     playerArray.forEach((points, index) => {
       if (points !== 0) {
+
         episodeTotal += points;
 
         const li = document.createElement("li");
@@ -93,7 +94,7 @@ async function loadData() {
       episodeDiv.appendChild(ul);
     }
 
-    // Only count toward total if episode qualifies for this league
+    // Only count toward total if allowed for league
     if (episodeNumber >= startEpisode) {
       totalScore += episodeTotal;
     }
@@ -103,10 +104,5 @@ async function loadData() {
 
   document.getElementById("totalScore").innerText = totalScore;
 }
-
-
-// ==============================
-// RUN
-// ==============================
 
 loadData();
