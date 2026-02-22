@@ -38,7 +38,18 @@ async function loadLeague(fileName) {
 
   title.innerText = league.leagueName;
   container.innerHTML = "";
+  // =========================================
+  // ADD Player SCOREBOARD LINK
+  // =========================================
 
+const playerLink = document.createElement("a");
+playerLink.href = `league-player-scoreboard.html?league=${fileName}`;
+playerLink.className = "league-button";
+playerLink.innerText = "Player Scoreboard";
+
+document.body.insertBefore(playerLink, container);
+
+  
   // =========================================
   // ADD TEAM SCOREBOARD LINK
   // =========================================
