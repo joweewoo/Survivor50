@@ -118,21 +118,24 @@ async function loadPlayerScoreboard() {
 
     rankings.forEach((p, index) => {
 
-      const row = document.createElement("div");
-      row.className = "score-row";
+  const row = document.createElement("div");
+  row.className = "score-row";
 
-      const link = document.createElement("a");
-      link.className = "scoreboard-player-link";
-      link.href = `player.html?name=${p.name}&league=${leagueFile}`;
-      link.innerText = p.name;
+  const numberText = document.createTextNode(`${index + 1}. `);
 
-      row.appendChild(document.createTextNode(`${index + 1}. `));
-      row.appendChild(link);
-      row.appendChild(document.createTextNode(` - ${p.score}`));
+  const link = document.createElement("a");
+  link.href = `player.html?name=${encodeURIComponent(p.name)}&league=${leagueFile}`;
+  link.className = "scoreboard-player-link";
+  link.innerText = p.name;
 
-      block.appendChild(row);
-    });
+  const scoreText = document.createTextNode(` - ${p.score}`);
 
+  row.appendChild(numberText);
+  row.appendChild(link);
+  row.appendChild(scoreText);
+
+  block.appendChild(row);
+});
     container.appendChild(block);
   }
 
