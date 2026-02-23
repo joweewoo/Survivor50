@@ -1,43 +1,48 @@
 {
-  "leagueName": "High School Friends League",
+  "leagueName": "Tuku League",
   "teams": [
     {
-      "teamName": "Cila",
+      "teamName": "Daddy Probst",
       "players": [
         { "name": "Christian"},
         { "name": "Cirie" },
         { "name": "Emily"},
         { "name": "Jenna"},
         { "name": "Joe"},
-        { "name": "Ozzy"},  
-        { "name": "Rick"},
-        { "name": "Savannah"}
+        { "name": "Ozzy"}
       ]
     },
     {
-      "teamName": "Kalo",
+      "teamName": "Stop Kissing Damn Alli",
       "players": [
         { "name": "Charlie" },
         { "name": "Chrissy"},
         { "name": "Coach" },
         { "name": "Dee"},
         { "name": "Jonathan"},
-        { "name": "Kamilla"},  
-        { "name": "Mike" },
-        { "name": "Tiffany" }
+        { "name": "Kamilla"}
       ]
     },
      {
-      "teamName": "Vatu",
+      "teamName": "Scruntivieve",
       "players": [
         { "name": "Angelina"},
         { "name": "Aubry"},
         { "name": "Colby"},
         { "name": "Genevieve"},
         { "name": "Kyle"},
-        { "name": "Q"},  
-        { "name": "Rizo"},
-        { "name": "Stephanie"}
+        { "name": "Q"}
+      ]
+    },
+         {
+      "teamName": "Unitarian Universalists",
+      "players": [
+        { "name": "Angelina"},
+        { "name": "Aubry"},
+        { "name": "Colby"},
+        { "name": "Genevieve"},
+        { "name": "Kyle"},
+        { "name": "Q"}
       ]
     }
   ]
