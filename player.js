@@ -15,7 +15,9 @@ document.getElementById("playerName").innerText = playerName;
 
 const leagueRules = {
   "league1": { startEpisode: 1 },
-  "league2": { startEpisode: 2 }
+  "league2": { startEpisode: 2 },
+  "league3": { startEpisode: 2 },
+  "league4": { startEpisode: 2 }
 };
 
 const startEpisode =
