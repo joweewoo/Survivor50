@@ -52,7 +52,9 @@ function getStartEpisode(leagueFile) {
 
   const leagueRules = {
     "league1": 1,
-    "league2": 2
+    "league2": 2,
+    "league3": 2,
+    "league4": 2
   };
 
   return leagueRules[leagueFile] || 1;
