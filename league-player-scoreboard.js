@@ -28,7 +28,9 @@ async function loadLeaguePlayerScoreboard() {
 
   const leagueRules = {
     "league1": 1,
-    "league2": 2
+    "league2": 2,
+    "league3": 2,
+    "league4": 2
   };
 
   const startEpisode = leagueRules[leagueFile] || 1;
