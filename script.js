@@ -22,7 +22,9 @@ window.addEventListener("DOMContentLoaded", () => {
 
 const leagueRules = {
   "league1": { startEpisode: 1 }, // High School Friends
-  "league2": { startEpisode: 2 }  // Family League
+  "league2": { startEpisode: 2 },  // Family League
+  "league3": { startEpisode: 2 },  // Lab League
+  "league4": { startEpisode: 2 }  // Med School League
 };
 
 
