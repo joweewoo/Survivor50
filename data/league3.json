@@ -1,0 +1,62 @@
+{
+  "leagueName": "Kortum Lab League",
+  "teams": [
+    {
+      "teamName": "Bridget's Team",
+      "players": [
+        { "name": "Christian"},
+        { "name": "Cirie" },
+        { "name": "Emily"}
+      ]
+    },
+    {
+      "teamName": "Hyun's Team",
+      "players": [
+        { "name": "Charlie" },
+        { "name": "Chrissy"},
+        { "name": "Coach" }
+      ]
+    },
+     {
+      "teamName": "Jacob's Team",
+      "players": [
+        { "name": "Angelina"},
+        { "name": "Aubry"},
+        { "name": "Colby"}
+      ]
+    },
+         {
+      "teamName": "Joey's Team",
+      "players": [
+        { "name": "Angelina"},
+        { "name": "Aubry"},
+        { "name": "Colby"}
+      ]
+    },
+         {
+      "teamName": "Picabo's Team",
+      "players": [
+        { "name": "Angelina"},
+        { "name": "Aubry"},
+        { "name": "Colby"}
+      ]
+    },
+         {
+      "teamName": "Sarasi's Team",
+      "players": [
+        { "name": "Angelina"},
+        { "name": "Aubry"},
+        { "name": "Colby"}
+      ]
+    },
+         {
+      "teamName": "Undrafted",
+      "players": [
+        { "name": "Angelina"},
+        { "name": "Aubry"},
+        { "name": "Colby"},
+        { "name": "Poopy"}
+      ]
+    }
+  ]
+}
