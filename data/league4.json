@@ -1,0 +1,62 @@
+{
+  "leagueName": "Med School League",
+  "teams": [
+    {
+      "teamName": "Brad's Team",
+      "players": [
+        { "name": "Christian"},
+        { "name": "Cirie" },
+        { "name": "Emily"}
+      ]
+    },
+    {
+      "teamName": "Colby's Team",
+      "players": [
+        { "name": "Charlie" },
+        { "name": "Chrissy"},
+        { "name": "Coach" }
+      ]
+    },
+     {
+      "teamName": "Joey's Team",
+      "players": [
+        { "name": "Angelina"},
+        { "name": "Aubry"},
+        { "name": "Colby"}
+      ]
+    },
+         {
+      "teamName": "Picabo's Team",
+      "players": [
+        { "name": "Angelina"},
+        { "name": "Aubry"},
+        { "name": "Colby"}
+      ]
+    },
+         {
+      "teamName": "Stephen's Team",
+      "players": [
+        { "name": "Angelina"},
+        { "name": "Aubry"},
+        { "name": "Colby"}
+      ]
+    },
+         {
+      "teamName": "Tom's Team",
+      "players": [
+        { "name": "Angelina"},
+        { "name": "Aubry"},
+        { "name": "Colby"}
+      ]
+    },
+         {
+      "teamName": "Undrafted",
+      "players": [
+        { "name": "Angelina"},
+        { "name": "Aubry"},
+        { "name": "Colby"},
+        { "name": "Poopy"}
+      ]
+    }
+  ]
+}
