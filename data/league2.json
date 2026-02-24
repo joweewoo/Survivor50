@@ -1,43 +1,103 @@
 {
-  "leagueName": "LaMorte Family League",
+  "leagueName": "LaMorte / San Diego League",
   "teams": [
     {
-      "teamName": "Poopy",
+      "teamName": "Ally's Team",
       "players": [
-        { "name": "Christian"},
-        { "name": "Cirie" },
-        { "name": "Emily"},
-        { "name": "Jenna"},
-        { "name": "Joe"},
-        { "name": "Ozzy"},  
-        { "name": "Rick"},
-        { "name": "Savannah"}
+        { "name": "Person A"},
+        { "name": "Person B" },
+        { "name": "Person C"},
+        { "name": "Person D"}
       ]
     },
     {
-      "teamName": "Potty",
+      "teamName": "Dad's Team",
       "players": [
-        { "name": "Charlie" },
-        { "name": "Chrissy"},
-        { "name": "Coach" },
-        { "name": "Dee"},
-        { "name": "Jonathan"},
-        { "name": "Kamilla"},  
-        { "name": "Mike" },
-        { "name": "Tiffany" }
+        { "name": "Person A"},
+        { "name": "Person B" },
+        { "name": "Person C"},
+        { "name": "Person D"}
       ]
     },
      {
-      "teamName": "Frow Up",
+      "teamName": "Danny's Team",
       "players": [
-        { "name": "Angelina"},
-        { "name": "Aubry"},
-        { "name": "Colby"},
-        { "name": "Genevieve"},
-        { "name": "Kyle"},
-        { "name": "Q"},  
-        { "name": "Rizo"},
-        { "name": "Stephanie"}
+        { "name": "Person A"},
+        { "name": "Person B" },
+        { "name": "Person C"},
+        { "name": "Person D"}
+      ]
+    },
+    {
+      "teamName": "Jack's Team",
+      "players": [
+        { "name": "Person A"},
+        { "name": "Person B" },
+        { "name": "Person C"},
+        { "name": "Person D"}
+      ]
+    },
+    {
+      "teamName": "Joey's Team",
+      "players": [
+        { "name": "Person A"},
+        { "name": "Person B" },
+        { "name": "Person C"},
+        { "name": "Person D"}
+      ]
+    },
+    {
+      "teamName": "Kate's Team",
+      "players": [
+        { "name": "Person A"},
+        { "name": "Person B" },
+        { "name": "Person C"},
+        { "name": "Person D"}
+      ]
+    },
+    {
+      "teamName": "Kim's Team",
+      "players": [
+        { "name": "Person A"},
+        { "name": "Person B" },
+        { "name": "Person C"},
+        { "name": "Person D"}
+      ]
+    },
+    {
+      "teamName": "Mom's Team",
+      "players": [
+        { "name": "Person A"},
+        { "name": "Person B" },
+        { "name": "Person C"},
+        { "name": "Person D"}
+      ]
+    },
+    {
+      "teamName": "Nicky's Team",
+      "players": [
+        { "name": "Person A"},
+        { "name": "Person B" },
+        { "name": "Person C"},
+        { "name": "Person D"}
+      ]
+    },
+    {
+      "teamName": "Peyton's Team",
+      "players": [
+        { "name": "Person A"},
+        { "name": "Person B" },
+        { "name": "Person C"},
+        { "name": "Person D"}
+      ]
+    },
+    {
+      "teamName": "Robbie's Team",
+      "players": [
+        { "name": "Person A"},
+        { "name": "Person B" },
+        { "name": "Person C"},
+        { "name": "Person D"}
       ]
     }
   ]
