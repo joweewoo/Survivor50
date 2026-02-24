@@ -4,45 +4,45 @@
     {
       "teamName": "Daddy Probst",
       "players": [
-        { "name": "Christian"},
-        { "name": "Cirie" },
-        { "name": "Emily"},
-        { "name": "Jenna"},
-        { "name": "Joe"},
-        { "name": "Ozzy"}
+        { "name": "Person A"},
+        { "name": "Person B" },
+        { "name": "Person C"},
+        { "name": "Person D"},
+        { "name": "Person E"},
+        { "name": "Person F"}
       ]
     },
     {
       "teamName": "Stop Kissing Damn Alli",
       "players": [
-        { "name": "Charlie" },
-        { "name": "Chrissy"},
-        { "name": "Coach" },
-        { "name": "Dee"},
-        { "name": "Jonathan"},
-        { "name": "Kamilla"}
+        { "name": "Person A"},
+        { "name": "Person B" },
+        { "name": "Person C"},
+        { "name": "Person D"},
+        { "name": "Person E"},
+        { "name": "Person F"}
       ]
     },
      {
       "teamName": "Scruntivieve",
       "players": [
-        { "name": "Angelina"},
-        { "name": "Aubry"},
-        { "name": "Colby"},
-        { "name": "Genevieve"},
-        { "name": "Kyle"},
-        { "name": "Q"}
+        { "name": "Person A"},
+        { "name": "Person B" },
+        { "name": "Person C"},
+        { "name": "Person D"},
+        { "name": "Person E"},
+        { "name": "Person F"}
       ]
     },
          {
       "teamName": "Unitarian Universalists",
       "players": [
-        { "name": "Angelina"},
-        { "name": "Aubry"},
-        { "name": "Colby"},
-        { "name": "Genevieve"},
-        { "name": "Kyle"},
-        { "name": "Q"}
+        { "name": "Person A"},
+        { "name": "Person B" },
+        { "name": "Person C"},
+        { "name": "Person D"},
+        { "name": "Person E"},
+        { "name": "Person F"}
       ]
     }
   ]
