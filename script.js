@@ -1,8 +1,40 @@
 // ======================================================
+// GLOBAL CONTESTANT CACHE
+// ======================================================
+
+let contestantData = null;
+
+async function loadContestantData() {
+  if (contestantData) return contestantData;
+
+  const response = await fetch("data/leaguecontestants.json?v=" + Date.now());
+  if (!response.ok) {
+    console.error("Contestants file not found");
+    return null;
+  }
+
+  contestantData = await response.json();
+  return contestantData;
+}
+
+function getPlayerTribe(playerName) {
+  if (!contestantData?.teams) return null;
+
+  const player = contestantData.teams.find(
+    t => t.teamName === playerName
+  );
+
+  return player ? player.tribe : null;
+}
+
+
+// ======================================================
 // ROUTING
 // ======================================================
 
-window.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("DOMContentLoaded", async () => {
+
+  await loadContestantData();
 
   const params = new URLSearchParams(window.location.search);
   const leagueFile = params.get("league");
@@ -21,10 +53,10 @@ window.addEventListener("DOMContentLoaded", () => {
 // ======================================================
 
 const leagueRules = {
-  "league1": { startEpisode: 1 }, // High School Friends
-  "league2": { startEpisode: 2 },  // Family League
-  "league3": { startEpisode: 2 },  // Lab League
-  "league4": { startEpisode: 2 }  // Med School League
+  "league1": { startEpisode: 1 },
+  "league2": { startEpisode: 2 },
+  "league3": { startEpisode: 2 },
+  "league4": { startEpisode: 2 }
 };
 
 
@@ -33,8 +65,6 @@ const leagueRules = {
 // ======================================================
 
 async function loadLeague(fileName) {
-
-  console.log("Loading league:", fileName);
 
   const response = await fetch(`data/${fileName}.json`);
   if (!response.ok) {
@@ -52,13 +82,12 @@ async function loadLeague(fileName) {
   title.innerText = league.leagueName;
   container.innerHTML = "";
 
-  // Determine startEpisode for this league
   const startEpisode =
     leagueRules[fileName]?.startEpisode || 1;
 
 
   // =========================================
-  // PLAYER SCOREBOARD LINK
+  // SCOREBOARD LINKS
   // =========================================
 
   const playerLink = document.createElement("a");
@@ -67,11 +96,6 @@ async function loadLeague(fileName) {
   playerLink.innerText = "Player Scoreboard";
 
   title.insertAdjacentElement("afterend", playerLink);
-
-
-  // =========================================
-  // TEAM SCOREBOARD LINK
-  // =========================================
 
   const scoreboardLink = document.createElement("a");
   scoreboardLink.href = `team-scoreboard.html?league=${fileName}`;
@@ -103,10 +127,12 @@ async function loadLeague(fileName) {
       const score = await calculatePlayerScore(player.name, startEpisode);
       teamTotal += score;
 
+      const tribe = getPlayerTribe(player.name);
+
       const li = document.createElement("li");
 
       li.innerHTML = `
-        <a class="scoreboard-player-link"
+        <a class="scoreboard-player-link tribe-${tribe}"
            href="player.html?name=${player.name}&league=${fileName}">
           ${player.name}
         </a>
@@ -137,28 +163,20 @@ async function loadContestants() {
   const container = document.getElementById("leagueContainer");
   if (!container) return;
 
-  const response = await fetch("data/leaguecontestants.json?v=" + Date.now());
-  if (!response.ok) {
-    console.error("Contestants file not found");
-    return;
-  }
-
-  const data = await response.json();
-
   container.innerHTML = "";
 
   const header = document.createElement("h1");
   header.className = "league-header";
-  header.innerText = data.leagueName;
+  header.innerText = contestantData.leagueName;
   container.appendChild(header);
 
-  data.teams.forEach(team => {
+  contestantData.teams.forEach(team => {
 
     const card = document.createElement("div");
     card.className = "team-card";
 
     const link = document.createElement("a");
-    link.className = "scoreboard-player-link";
+    link.className = "scoreboard-player-link tribe-" + team.tribe;
     link.href = `league.html?league=${team.file}`;
     link.innerText = team.teamName;
 
