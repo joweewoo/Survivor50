@@ -4,45 +4,45 @@
     {
       "teamName": "Daddy Probst",
       "players": [
-        { "name": "Person A"},
-        { "name": "Person B" },
-        { "name": "Person C"},
-        { "name": "Person D"},
-        { "name": "Person E"},
-        { "name": "Person F"}
+        { "name": "Stephanie"},
+        { "name": "Ozzy" },
+        { "name": "Dee"},
+        { "name": "Christian"},
+        { "name": "Rick"},
+        { "name": "Kyle"}
       ]
     },
     {
-      "teamName": "Stop Kissing Damn Alli",
+      "teamName": "Dragon Slayerz",
       "players": [
-        { "name": "Person A"},
-        { "name": "Person B" },
-        { "name": "Person C"},
-        { "name": "Person D"},
-        { "name": "Person E"},
-        { "name": "Person F"}
+        { "name": "Rizo"},
+        { "name": "Aubry" },
+        { "name": "Joe"},
+        { "name": "Jonathan"},
+        { "name": "Tiffany"},
+        { "name": "Savannah"}
       ]
     },
      {
       "teamName": "Scruntivieve",
       "players": [
-        { "name": "Person A"},
-        { "name": "Person B" },
-        { "name": "Person C"},
-        { "name": "Person D"},
-        { "name": "Person E"},
-        { "name": "Person F"}
+        { "name": "Genevieve"},
+        { "name": "Coach" },
+        { "name": "Jenna"},
+        { "name": "Colby"},
+        { "name": "Kamilla"},
+        { "name": "Q"}
       ]
     },
          {
-      "teamName": "Unitarian Universalists",
+      "teamName": "The Motherie",
       "players": [
-        { "name": "Person A"},
-        { "name": "Person B" },
-        { "name": "Person C"},
-        { "name": "Person D"},
-        { "name": "Person E"},
-        { "name": "Person F"}
+        { "name": "Cirie"},
+        { "name": "Emily" },
+        { "name": "Angelina"},
+        { "name": "Chrissy"},
+        { "name": "Charlie"},
+        { "name": "Mike"}
       ]
     }
   ]
