@@ -186,6 +186,10 @@ h1 {
   background-color: #e7a1b0; /* purple */
 }
 
+.tribe-Elim {
+  background-color: #e42217; /* red */
+}
+
 /* Hover — Always Black */
 .new-player-link:hover {
   background-color: black;
