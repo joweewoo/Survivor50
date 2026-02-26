@@ -109,7 +109,7 @@ async function loadLeaguePlayerScoreboard() {
 
       const row = document.createElement("div");
       row.className = "score-row";
-      row.innerText = `${index + 1}. ${p.name} - ${p.score}`;
+      row.innerText = `${index + 1}. ${p.name} : ${p.score}`;
 
       block.appendChild(row);
     });
@@ -136,7 +136,7 @@ async function loadLeaguePlayerScoreboard() {
 
     const row = document.createElement("div");
     row.className = "score-row";
-    row.innerText = `${index + 1}. ${p.name} - ${p.score}`;
+    row.innerText = `${index + 1}. ${p.name} : ${p.score}`;
 
     overallBlock.appendChild(row);
   });
