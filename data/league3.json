@@ -41,6 +41,14 @@
         { "name": "Person C"}
       ]
     },
+             {
+      "teamName": "Rob's Team",
+      "players": [
+        { "name": "Person A"},
+        { "name": "Person B" },
+        { "name": "Person C"}
+      ]
+    },
          {
       "teamName": "Sarasi's Team",
       "players": [
@@ -52,10 +60,7 @@
          {
       "teamName": "Undrafted",
       "players": [
-        { "name": "Person A"},
-        { "name": "Person B" },
-        { "name": "Person C" },
-        { "name": "Person D"}
+        { "name": "Person A"}
       ]
     }
   ]
