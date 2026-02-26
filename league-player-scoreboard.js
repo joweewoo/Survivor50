@@ -22,7 +22,7 @@ async function loadLeaguePlayerScoreboard() {
   container.innerHTML = "";
 
   // ======================================================
-  // LEAGUE START EPISODE RULES
+  // LEAGUE RULES (START EPISODE)
   // ======================================================
 
   const leagueRules = {
@@ -35,37 +35,29 @@ async function loadLeaguePlayerScoreboard() {
   const startEpisode = leagueRules[leagueFile] || 1;
 
   // ======================================================
-  // LOAD CONTESTANT DATA (ELIMINATION + TRIBE)
+  // LOAD CONTESTANTS + BUILD TRIBE MAP
   // ======================================================
 
   const contestantRes = await fetch("data/leaguecontestants.json?v=" + Date.now());
-  if (!contestantRes.ok) {
-    console.error("Could not load contestant data");
-    return;
-  }
-
   const contestantData = await contestantRes.json();
 
-  const eliminationMap = {};
-  const tribeMap = {};
+  let eliminationMap = {};
+  let tribeMap = {};
 
   contestantData.teams?.forEach(player => {
     eliminationMap[player.teamName] = player.eliminatedAfter ?? null;
-    tribeMap[player.teamName] = player.tribe ?? null;
+    tribeMap[player.teamName] = player.tribe || null;
   });
-
-  function getPlayerTribe(name) {
-    return tribeMap[name] || null;
-  }
 
   // ======================================================
   // LOAD EPISODES DYNAMICALLY
   // ======================================================
 
-  const episodes = [];
+  let episodes = [];
   let episodeNumber = 1;
 
   while (true) {
+
     const res = await fetch(`data/episode${episodeNumber}.json?v=${Date.now()}`);
     if (!res.ok) break;
 
@@ -74,13 +66,13 @@ async function loadLeaguePlayerScoreboard() {
     episodeNumber++;
   }
 
-  const overallTotals = {};
+  let overallTotals = {};
 
   // ======================================================
-  // RENDER EPISODE BLOCKS
+  // RENDER EPISODES
   // ======================================================
 
-  for (const episode of episodes) {
+  for (let episode of episodes) {
 
     if (episode.episode < startEpisode) continue;
 
@@ -91,42 +83,45 @@ async function loadLeaguePlayerScoreboard() {
     title.innerText = `EPISODE ${episode.episode}`;
     block.appendChild(title);
 
-    const rankings = [];
+    let rankings = [];
 
-    for (const player in episode.matrix) {
+    for (let playerName in episode.matrix) {
 
-      const eliminatedAfter = eliminationMap[player];
+      const eliminatedAfter = eliminationMap[playerName];
 
-      // Skip if eliminated before this episode
       if (eliminatedAfter !== null &&
           eliminatedAfter < episode.episode) {
         continue;
       }
 
-      const score = episode.matrix[player]
+      const score = episode.matrix[playerName]
         .reduce((a, b) => a + b, 0);
 
-      rankings.push({ name: player, score });
+      rankings.push({
+        name: playerName,
+        score: score
+      });
 
-      overallTotals[player] =
-        (overallTotals[player] || 0) + score;
+      overallTotals[playerName] =
+        (overallTotals[playerName] || 0) + score;
     }
 
     rankings.sort((a, b) => b.score - a.score);
 
     rankings.forEach((p, index) => {
 
+      const tribe = tribeMap[p.name];
+
       const row = document.createElement("div");
       row.className = "score-row";
 
-      const tribe = getPlayerTribe(p.name);
-
       row.innerHTML = `
-        ${index + 1}. 
-        <a href="player.html?name=${encodeURIComponent(p.name)}&league=${leagueFile}" 
-           class="scoreboard-player-link tribe-${tribe}">
+        ${index + 1}.
+        <a href="player.html?name=${encodeURIComponent(p.name)}&league=${leagueFile}"
+           class="new-player-link ${tribe ? `tribe-${tribe}` : ""}">
            ${p.name}
-        </a> : ${p.score}
+        </a>
+        : ${p.score}
       `;
 
       block.appendChild(row);
@@ -136,7 +131,7 @@ async function loadLeaguePlayerScoreboard() {
   }
 
   // ======================================================
-  // OVERALL RANKING BLOCK
+  // OVERALL BLOCK
   // ======================================================
 
   const overallBlock = document.createElement("div");
@@ -152,17 +147,18 @@ async function loadLeaguePlayerScoreboard() {
 
   overallArray.forEach((p, index) => {
 
+    const tribe = tribeMap[p.name];
+
     const row = document.createElement("div");
     row.className = "score-row";
 
-    const tribe = getPlayerTribe(p.name);
-
     row.innerHTML = `
-      ${index + 1}. 
-      <a href="player.html?name=${encodeURIComponent(p.name)}&league=${leagueFile}" 
-         class="scoreboard-player-link tribe-${tribe}">
+      ${index + 1}.
+      <a href="player.html?name=${encodeURIComponent(p.name)}&league=${leagueFile}"
+         class="new-player-link ${tribe ? `tribe-${tribe}` : ""}">
          ${p.name}
-      </a> : ${p.score}
+      </a>
+      : ${p.score}
     `;
 
     overallBlock.appendChild(row);
