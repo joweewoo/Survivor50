@@ -107,7 +107,7 @@ h1 {
   display: inline;
   padding: 4px 8px;     /* Smaller padding so it doesn’t increase height */
   background-color: #222;
-  color: white;
+  color: black;
   text-decoration: none;
   border-radius: 6px;
   font-weight: 600;
@@ -115,8 +115,8 @@ h1 {
 }
 
 .scoreboard-player-link:hover {
-  background-color: #f39c12;
-  color: black;
+  background-color: black;
+  color: white;
 }
 
 /* CRITERIA TABLE STYLING */
