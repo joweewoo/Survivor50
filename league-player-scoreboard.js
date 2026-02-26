@@ -105,14 +105,23 @@ async function loadLeaguePlayerScoreboard() {
 
     rankings.sort((a, b) => b.score - a.score);
 
-    rankings.forEach((p, index) => {
+rankings.forEach((p, index) => {
 
-      const row = document.createElement("div");
-      row.className = "score-row";
-      row.innerText = `${index + 1}. ${p.name} : ${p.score}`;
+  const row = document.createElement("div");
+  row.className = "score-row";
 
-      block.appendChild(row);
-    });
+  const tribe = getPlayerTribe(p.name);
+
+  row.innerHTML = `
+    ${index + 1}. 
+    <a href="player.html?name=${p.name}" 
+       class="player-link tribe-${tribe}">
+       ${p.name}
+    </a> : ${p.score}
+  `;
+
+  block.appendChild(row);
+});
 
     container.appendChild(block);
   }
@@ -136,7 +145,15 @@ async function loadLeaguePlayerScoreboard() {
 
     const row = document.createElement("div");
     row.className = "score-row";
-    row.innerText = `${index + 1}. ${p.name} : ${p.score}`;
+    const tribe = getPlayerTribe(p.name);
+
+  row.innerHTML = `
+    ${index + 1}. 
+    <a href="player.html?name=${p.name}" 
+       class="player-link tribe-${tribe}">
+       ${p.name}
+    </a> : ${p.score}
+  `;
 
     overallBlock.appendChild(row);
   });
