@@ -47,7 +47,13 @@ async function loadLeaguePlayerScoreboard() {
   contestantData.teams?.forEach(team => {
     eliminationMap[team.teamName] = team.eliminatedAfter ?? null;
   });
-
+  
+function getPlayerTribe(playerName) {
+  const player = contestantData.teams.find(
+    t => t.teamName === playerName
+  );
+  return player ? player.tribe : null;
+}
   // ----------------------------
   // Load Episodes Dynamically
   // ----------------------------
@@ -115,7 +121,7 @@ rankings.forEach((p, index) => {
   row.innerHTML = `
     ${index + 1}. 
     <a href="player.html?name=${p.name}" 
-       class="player-link tribe-${tribe}">
+       class="new-player-link tribe-${tribe}">
        ${p.name}
     </a> : ${p.score}
   `;
@@ -150,7 +156,7 @@ rankings.forEach((p, index) => {
   row.innerHTML = `
     ${index + 1}. 
     <a href="player.html?name=${p.name}" 
-       class="player-link tribe-${tribe}">
+       class="new-player-link tribe-${tribe}">
        ${p.name}
     </a> : ${p.score}
   `;
