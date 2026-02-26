@@ -164,3 +164,29 @@ h1 {
   text-align: right;
   font-weight: bold;
 }
+
+.new-player-link {
+  padding: 4px 8px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: white;
+  transition: 0.2s ease;
+}
+
+/* Tribe Base Colors */
+.tribe-Cila {
+  background-color: #ffe87c; /* orange */
+}
+
+.tribe-Kalo {
+  background-color: #87cefa; /* blue */
+}
+
+.tribe-Vatu {
+  background-color: #e7a1b0; /* purple */
+}
+
+/* Hover — Always Black */
+.new-player-link:hover {
+  background-color: black;
+}
