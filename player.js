@@ -92,7 +92,7 @@ async function loadData() {
         episodeTotal += points;
 
         const li = document.createElement("li");
-        li.innerText = `${episode.actions[index]} (+${points})`;
+        li.innerText = `${episode.actions[index]} (${points})`;
         ul.appendChild(li);
       }
     });
