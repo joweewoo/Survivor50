@@ -19,12 +19,11 @@ async function loadLeaguePlayerScoreboard() {
   const container = document.getElementById("scoreboardContainer");
   if (!container) return;
 
-  // Clear container
   container.innerHTML = "";
 
-  // ----------------------------
-  // Get League Rules (Start Episode)
-  // ----------------------------
+  // ======================================================
+  // LEAGUE START EPISODE RULES
+  // ======================================================
 
   const leagueRules = {
     "league1": 1,
@@ -35,50 +34,53 @@ async function loadLeaguePlayerScoreboard() {
 
   const startEpisode = leagueRules[leagueFile] || 1;
 
-  // ----------------------------
-  // Load Elimination Data
-  // ----------------------------
+  // ======================================================
+  // LOAD CONTESTANT DATA (ELIMINATION + TRIBE)
+  // ======================================================
 
   const contestantRes = await fetch("data/leaguecontestants.json?v=" + Date.now());
+  if (!contestantRes.ok) {
+    console.error("Could not load contestant data");
+    return;
+  }
+
   const contestantData = await contestantRes.json();
 
-  let eliminationMap = {};
+  const eliminationMap = {};
+  const tribeMap = {};
 
-  contestantData.teams?.forEach(team => {
-    eliminationMap[team.teamName] = team.eliminatedAfter ?? null;
+  contestantData.teams?.forEach(player => {
+    eliminationMap[player.teamName] = player.eliminatedAfter ?? null;
+    tribeMap[player.teamName] = player.tribe ?? null;
   });
-  
-function getPlayerTribe(playerName) {
-  const player = contestantData.teams.find(
-    t => t.teamName === playerName
-  );
-  return player ? player.tribe : null;
-}
-  // ----------------------------
-  // Load Episodes Dynamically
-  // ----------------------------
 
-  let episodes = [];
+  function getPlayerTribe(name) {
+    return tribeMap[name] || null;
+  }
+
+  // ======================================================
+  // LOAD EPISODES DYNAMICALLY
+  // ======================================================
+
+  const episodes = [];
   let episodeNumber = 1;
 
   while (true) {
-
     const res = await fetch(`data/episode${episodeNumber}.json?v=${Date.now()}`);
     if (!res.ok) break;
 
     const data = await res.json();
     episodes.push(data);
-
     episodeNumber++;
   }
 
-  let overallTotals = {};
+  const overallTotals = {};
 
-  // ----------------------------
-  // Render Episodes
-  // ----------------------------
+  // ======================================================
+  // RENDER EPISODE BLOCKS
+  // ======================================================
 
-  for (let episode of episodes) {
+  for (const episode of episodes) {
 
     if (episode.episode < startEpisode) continue;
 
@@ -89,12 +91,13 @@ function getPlayerTribe(playerName) {
     title.innerText = `EPISODE ${episode.episode}`;
     block.appendChild(title);
 
-    let rankings = [];
+    const rankings = [];
 
-    for (let player in episode.matrix) {
+    for (const player in episode.matrix) {
 
       const eliminatedAfter = eliminationMap[player];
 
+      // Skip if eliminated before this episode
       if (eliminatedAfter !== null &&
           eliminatedAfter < episode.episode) {
         continue;
@@ -111,30 +114,30 @@ function getPlayerTribe(playerName) {
 
     rankings.sort((a, b) => b.score - a.score);
 
-rankings.forEach((p, index) => {
+    rankings.forEach((p, index) => {
 
-  const row = document.createElement("div");
-  row.className = "score-row";
+      const row = document.createElement("div");
+      row.className = "score-row";
 
-  const tribe = getPlayerTribe(p.name);
+      const tribe = getPlayerTribe(p.name);
 
-  row.innerHTML = `
-    ${index + 1}. 
-    <a href="player.html?name=${p.name}" 
-       class="new-player-link tribe-${tribe}">
-       ${p.name}
-    </a> : ${p.score}
-  `;
+      row.innerHTML = `
+        ${index + 1}. 
+        <a href="player.html?name=${encodeURIComponent(p.name)}&league=${leagueFile}" 
+           class="scoreboard-player-link tribe-${tribe}">
+           ${p.name}
+        </a> : ${p.score}
+      `;
 
-  block.appendChild(row);
-});
+      block.appendChild(row);
+    });
 
     container.appendChild(block);
   }
 
-  // ----------------------------
-  // Overall Block
-  // ----------------------------
+  // ======================================================
+  // OVERALL RANKING BLOCK
+  // ======================================================
 
   const overallBlock = document.createElement("div");
   overallBlock.className = "scoreboard-block";
@@ -151,15 +154,16 @@ rankings.forEach((p, index) => {
 
     const row = document.createElement("div");
     row.className = "score-row";
+
     const tribe = getPlayerTribe(p.name);
 
-  row.innerHTML = `
-    ${index + 1}. 
-    <a href="player.html?name=${p.name}" 
-       class="new-player-link tribe-${tribe}">
-       ${p.name}
-    </a> : ${p.score}
-  `;
+    row.innerHTML = `
+      ${index + 1}. 
+      <a href="player.html?name=${encodeURIComponent(p.name)}&league=${leagueFile}" 
+         class="scoreboard-player-link tribe-${tribe}">
+         ${p.name}
+      </a> : ${p.score}
+    `;
 
     overallBlock.appendChild(row);
   });
