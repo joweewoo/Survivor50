@@ -22,8 +22,8 @@
     { "teamName": "Colby", "tribe" : "Vatu", "eliminatedAfter": null  },
     { "teamName": "Genevieve", "tribe" : "Vatu", "eliminatedAfter": null  },
     { "teamName": "Kyle", "tribe" : "Vatu", "eliminatedAfter": null  },
-    { "teamName": "Q", "eliminatedAfter": null  },
-    { "teamName": "Rizo", "eliminatedAfter": null  },
-    { "teamName": "Stephanie", "eliminatedAfter": null  }
+    { "teamName": "Q", "tribe" : "Vatu", "eliminatedAfter": null  },
+    { "teamName": "Rizo", "tribe" : "Vatu", "eliminatedAfter": null  },
+    { "teamName": "Stephanie", "tribe" : "Vatu", "eliminatedAfter": null  }
   ]
 }
