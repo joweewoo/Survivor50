@@ -4,7 +4,7 @@
     { "teamName": "Christian", "tribe" : "Cila", "eliminatedAfter": null  },
     { "teamName": "Cirie", "tribe" : "Cila", "eliminatedAfter": null  },
     { "teamName": "Emily", "tribe" : "Cila", "eliminatedAfter": null  },
-    { "teamName": "Jenna", "tribe" : "Cila", "eliminatedAfter": null  },
+    { "teamName": "Jenna", "tribe" : "Cila", "eliminatedAfter": 1  },
     { "teamName": "Joe", "tribe" : "Cila", "eliminatedAfter": null  },
     { "teamName": "Ozzy", "tribe" : "Cila", "eliminatedAfter": null  },
     { "teamName": "Rick", "tribe" : "Cila", "eliminatedAfter": null  },
@@ -21,7 +21,7 @@
     { "teamName": "Aubry", "tribe" : "Vatu", "eliminatedAfter": null  },
     { "teamName": "Colby", "tribe" : "Vatu", "eliminatedAfter": null  },
     { "teamName": "Genevieve", "tribe" : "Vatu", "eliminatedAfter": null  },
-    { "teamName": "Kyle", "tribe" : "Vatu", "eliminatedAfter": null  },
+    { "teamName": "Kyle", "tribe" : "Vatu", "eliminatedAfter": 1  },
     { "teamName": "Q", "tribe" : "Vatu", "eliminatedAfter": null  },
     { "teamName": "Rizo", "tribe" : "Vatu", "eliminatedAfter": null  },
     { "teamName": "Stephanie", "tribe" : "Vatu", "eliminatedAfter": null  }
