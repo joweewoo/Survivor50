@@ -4,63 +4,63 @@
     {
       "teamName": "Bridget's Team",
       "players": [
-        { "name": "Person A"},
-        { "name": "Person B" },
-        { "name": "Person C"}
+        { "name": "Jonathan"},
+        { "name": "Kamilla" },
+        { "name": "Joe"}
       ]
     },
     {
       "teamName": "Hyun's Team",
       "players": [
-        { "name": "Person A"},
-        { "name": "Person B" },
-        { "name": "Person C"}
+        { "name": "Savannah"},
+        { "name": "Emily" },
+        { "name": "Angelina"}
       ]
     },
      {
       "teamName": "Jacob's Team",
       "players": [
-        { "name": "Person A"},
-        { "name": "Person B" },
-        { "name": "Person C"}
+        { "name": "Christian"},
+        { "name": "Rizo" },
+        { "name": "Charlie"}
       ]
     },
          {
       "teamName": "Joey's Team",
       "players": [
-        { "name": "Person A"},
-        { "name": "Person B" },
-        { "name": "Person C"}
+        { "name": "Genevieve"},
+        { "name": "Coach" },
+        { "name": "Chrissy"}
       ]
     },
          {
       "teamName": "Picabo's Team",
       "players": [
-        { "name": "Person A"},
-        { "name": "Person B" },
-        { "name": "Person C"}
+        { "name": "Colby"},
+        { "name": "Aubry" },
+        { "name": "Q"}
       ]
     },
              {
       "teamName": "Rob's Team",
       "players": [
-        { "name": "Person A"},
-        { "name": "Person B" },
-        { "name": "Person C"}
+        { "name": "Rick"},
+        { "name": "Ozzy" },
+        { "name": "Dee"}
       ]
     },
          {
       "teamName": "Sarasi's Team",
       "players": [
-        { "name": "Person A"},
-        { "name": "Person B" },
-        { "name": "Person C"}
+        { "name": "Stephanie"},
+        { "name": "Mike" },
+        { "name": "Cirie"}
       ]
     },
          {
       "teamName": "Undrafted",
       "players": [
-        { "name": "Person A"}
+        { "name": "Tiffany"}
       ]
     }
   ]
