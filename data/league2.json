@@ -2,102 +2,102 @@
   "leagueName": "LaMorte / San Diego League",
   "teams": [
     {
-      "teamName": "Ally's Team",
+      "teamName": "Ally and Jordan's Team",
       "players": [
-        { "name": "Person A"},
-        { "name": "Person B" },
-        { "name": "Person C"},
-        { "name": "Person D"}
+        { "name": "Christian"},
+        { "name": "Cirie" },
+        { "name": "Chrissy"},
+        { "name": "Jonathan"}
       ]
     },
     {
-      "teamName": "Dad's Team",
+      "teamName": "Emily's Team",
       "players": [
-        { "name": "Person A"},
-        { "name": "Person B" },
-        { "name": "Person C"},
-        { "name": "Person D"}
+        { "name": "Mike"},
+        { "name": "Ozzy" },
+        { "name": "Joe"},
+        { "name": "Johnathan"}
       ]
     },
      {
       "teamName": "Danny's Team",
       "players": [
-        { "name": "Person A"},
-        { "name": "Person B" },
-        { "name": "Person C"},
-        { "name": "Person D"}
+        { "name": "Colby"},
+        { "name": "Charlie" },
+        { "name": "Dee"},
+        { "name": "Kamilla"}
       ]
     },
     {
       "teamName": "Jack's Team",
       "players": [
-        { "name": "Person A"},
-        { "name": "Person B" },
-        { "name": "Person C"},
-        { "name": "Person D"}
+        { "name": "Christian"},
+        { "name": "Stephanie" },
+        { "name": "Savannah"},
+        { "name": "Coach"}
       ]
     },
     {
       "teamName": "Joey's Team",
       "players": [
-        { "name": "Person A"},
-        { "name": "Person B" },
-        { "name": "Person C"},
-        { "name": "Person D"}
+        { "name": "Genevieve"},
+        { "name": "Coach" },
+        { "name": "Savannah"},
+        { "name": "Rizo"}
       ]
     },
     {
       "teamName": "Kate's Team",
       "players": [
-        { "name": "Person A"},
-        { "name": "Person B" },
-        { "name": "Person C"},
-        { "name": "Person D"}
+        { "name": "Dee"},
+        { "name": "Mike" },
+        { "name": "Aubry"},
+        { "name": "Emily"}
       ]
     },
     {
       "teamName": "Kim's Team",
       "players": [
-        { "name": "Person A"},
-        { "name": "Person B" },
-        { "name": "Person C"},
-        { "name": "Person D"}
+        { "name": "Rick"},
+        { "name": "Q" },
+        { "name": "Angelina"},
+        { "name": "Chrissy"}
       ]
     },
     {
       "teamName": "Mom's Team",
       "players": [
-        { "name": "Person A"},
-        { "name": "Person B" },
-        { "name": "Person C"},
-        { "name": "Person D"}
+        { "name": "Stephanie"},
+        { "name": "Q" },
+        { "name": "Rick"},
+        { "name": "Tiffany"}
       ]
     },
     {
       "teamName": "Nicky's Team",
       "players": [
-        { "name": "Person A"},
-        { "name": "Person B" },
-        { "name": "Person C"},
-        { "name": "Person D"}
+        { "name": "Colby"},
+        { "name": "Ozzy" },
+        { "name": "Tiffany"},
+        { "name": "Rizo"}
       ]
     },
     {
       "teamName": "Peyton's Team",
       "players": [
-        { "name": "Person A"},
-        { "name": "Person B" },
-        { "name": "Person C"},
-        { "name": "Person D"}
+        { "name": "Cirie"},
+        { "name": "Joe" },
+        { "name": "Charlie"},
+        { "name": "Emily"}
       ]
     },
     {
       "teamName": "Robbie's Team",
       "players": [
-        { "name": "Person A"},
-        { "name": "Person B" },
-        { "name": "Person C"},
-        { "name": "Person D"}
+        { "name": "Genevieve"},
+        { "name": "Kamilla" },
+        { "name": "Angelina"},
+        { "name": "Aubry"}
       ]
     }
   ]
