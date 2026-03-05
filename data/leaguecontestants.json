@@ -8,7 +8,7 @@
     { "teamName": "Joe", "tribe" : "Cila", "eliminatedAfter": null  },
     { "teamName": "Ozzy", "tribe" : "Cila", "eliminatedAfter": null  },
     { "teamName": "Rick", "tribe" : "Cila", "eliminatedAfter": null  },
-    { "teamName": "Savannah", "tribe" : "Cila", "eliminatedAfter": null  },
+    { "teamName": "Savannah", "tribe" : "Elim", "eliminatedAfter": 2  },
     { "teamName": "Charlie", "tribe" : "Kalo", "eliminatedAfter": null  },
     { "teamName": "Chrissy", "tribe" : "Kalo", "eliminatedAfter": null  },
     { "teamName": "Coach", "tribe" : "Kalo", "eliminatedAfter": null  },
