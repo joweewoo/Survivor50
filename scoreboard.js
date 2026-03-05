@@ -238,7 +238,7 @@ async function loadTeamScoreboard() {
     rankings.forEach((t, index) => {
       block.innerHTML += `
         <div class="score-row">
-          ${index + 1}. ${t.name} - ${t.score}
+          ${index + 1}. ${t.name} : ${t.score}
         </div>
       `;
     });
@@ -259,7 +259,7 @@ async function loadTeamScoreboard() {
   overallArray.forEach((t, index) => {
     overallBlock.innerHTML += `
       <div class="score-row">
-        ${index + 1}. ${t.name} - ${t.score}
+        ${index + 1}. ${t.name} : ${t.score}
       </div>
     `;
   });
