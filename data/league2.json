@@ -32,7 +32,7 @@
       "teamName": "Jack's Team",
       "players": [
         { "name": "Christian"},
-        { "name": "Stephanie" },
+        { "name": "Stephenie" },
         { "name": "Savannah"},
         { "name": "Coach"}
       ]
@@ -67,7 +67,7 @@
     {
       "teamName": "Mom's Team",
       "players": [
-        { "name": "Stephanie"},
+        { "name": "Stephenie"},
         { "name": "Q" },
         { "name": "Rick"},
         { "name": "Tiffany"}
