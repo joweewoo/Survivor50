@@ -15,7 +15,7 @@
     { "teamName": "Dee", "tribe" : "Cila", "eliminatedAfter": null  },
     { "teamName": "Jonathan", "tribe" : "Cila", "eliminatedAfter": null  },
     { "teamName": "Kamilla", "tribe" : "Cila", "eliminatedAfter": null  },
-    { "teamName": "Mike", "tribe" : "Vatu", "eliminatedAfter": null  },
+    { "teamName": "Mike", "tribe" : "Elim", "eliminatedAfter": 4  },
     { "teamName": "Tiffany", "tribe" : "Kalo", "eliminatedAfter": null  },
     { "teamName": "Angelina", "tribe" : "Vatu", "eliminatedAfter": null  },
     { "teamName": "Aubry", "tribe" : "Kalo", "eliminatedAfter": null  },
