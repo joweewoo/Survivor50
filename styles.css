@@ -186,6 +186,9 @@ h1 {
 .tribe-Elim {
   background-color: #ff0000; /* red */
 }
+.tribe-Manulevu {
+  background-color: #ffff00; /* yellow */
+}
 
 /* Hover — Always Black */
 .new-player-link:hover {
