@@ -1,7 +1,7 @@
 {
   "leagueName": "Contestants",
   "teams": [
-    { "teamName": "Christian", "tribe" : "Manulevu", "eliminatedAfter": null  },
+    { "teamName": "Christian", "tribe" : "Elim", "eliminatedAfter": 9  },
     { "teamName": "Cirie", "tribe" : "Manulevu", "eliminatedAfter": null  },
     { "teamName": "Emily", "tribe" : "Manulevu", "eliminatedAfter": null  },
     { "teamName": "Jenna", "tribe" : "Elim", "eliminatedAfter": 1  },
