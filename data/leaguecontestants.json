@@ -24,6 +24,6 @@
     { "teamName": "Kyle", "tribe" : "Elim", "eliminatedAfter": 1  },
     { "teamName": "Q", "tribe" : "Elim", "eliminatedAfter": 3  },
     { "teamName": "Rizo", "tribe" : "Manulevu", "eliminatedAfter": null  },
-    { "teamName": "Stephenie", "tribe" : "Manulevu", "eliminatedAfter": null  }
+    { "teamName": "Stephenie", "tribe" : "Elim", "eliminatedAfter": 10  }
   ]
 }
