@@ -3,10 +3,10 @@
   "teams": [
     { "teamName": "Christian", "tribe" : "Elim", "eliminatedAfter": 9  },
     { "teamName": "Cirie", "tribe" : "Manulevu", "eliminatedAfter": null  },
-    { "teamName": "Emily", "tribe" : "Manulevu", "eliminatedAfter": null  },
+    { "teamName": "Emily", "tribe" : "Elim", "eliminatedAfter": 11  },
     { "teamName": "Jenna", "tribe" : "Elim", "eliminatedAfter": 1  },
     { "teamName": "Joe", "tribe" : "Manulevu", "eliminatedAfter": null  },
-    { "teamName": "Ozzy", "tribe" : "Manulevu", "eliminatedAfter": null  },
+    { "teamName": "Ozzy", "tribe" : "Elim", "eliminatedAfter": 11  },
     { "teamName": "Rick", "tribe" : "Manulevu", "eliminatedAfter": null  },
     { "teamName": "Savannah", "tribe" : "Elim", "eliminatedAfter": 2  },
     { "teamName": "Charlie", "tribe" : "Elim", "eliminatedAfter": 5  },
