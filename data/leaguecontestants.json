@@ -16,14 +16,14 @@
     { "teamName": "Jonathan", "tribe" : "Manulevu", "eliminatedAfter": null  },
     { "teamName": "Kamilla", "tribe" : "Elim", "eliminatedAfter": 6  },
     { "teamName": "Mike", "tribe" : "Elim", "eliminatedAfter": 4  },
-    { "teamName": "Tiffany", "tribe" : "Manulevu", "eliminatedAfter": null  },
+    { "teamName": "Tiffany", "tribe" : "Elim", "eliminatedAfter": 13  },
     { "teamName": "Angelina", "tribe" : "Elim", "eliminatedAfter": 5  },
-    { "teamName": "Aubry", "tribe" : "Manulevu", "eliminatedAfter": null  },
+    { "teamName": "Aubry", "tribe" : "Winner", "eliminatedAfter": null  },
     { "teamName": "Colby", "tribe" : "Elim", "eliminatedAfter": 6  },
     { "teamName": "Genevieve", "tribe" : "Elim", "eliminatedAfter": 6  },
     { "teamName": "Kyle", "tribe" : "Elim", "eliminatedAfter": 1  },
     { "teamName": "Q", "tribe" : "Elim", "eliminatedAfter": 3  },
-    { "teamName": "Rizo", "tribe" : "Manulevu", "eliminatedAfter": null  },
+    { "teamName": "Rizo", "tribe" : "Elim", "eliminatedAfter": 13  },
     { "teamName": "Stephenie", "tribe" : "Elim", "eliminatedAfter": 10  }
   ]
 }
